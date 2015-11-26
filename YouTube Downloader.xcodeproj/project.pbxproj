@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		850106DF1C071A56007FA519 /* DownloadManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 850106DE1C071A56007FA519 /* DownloadManager.swift */; };
+		850106E11C072F04007FA519 /* Encodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 850106E01C072F04007FA519 /* Encodable.swift */; };
+		850106E31C072FF9007FA519 /* Download.swift in Sources */ = {isa = PBXBuildFile; fileRef = 850106E21C072FF9007FA519 /* Download.swift */; };
 		850818321BF68944002A0731 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 850818311BF68944002A0731 /* AppDelegate.swift */; };
 		850818341BF68944002A0731 /* ListVideosVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 850818331BF68944002A0731 /* ListVideosVC.swift */; };
 		850818361BF68944002A0731 /* DownloadVideoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 850818351BF68944002A0731 /* DownloadVideoVC.swift */; };
@@ -14,21 +17,15 @@
 		8508183B1BF68944002A0731 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8508183A1BF68944002A0731 /* Assets.xcassets */; };
 		8508183E1BF68944002A0731 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8508183C1BF68944002A0731 /* LaunchScreen.storyboard */; };
 		850818501BF6B581002A0731 /* AVKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8508184F1BF6B581002A0731 /* AVKit.framework */; };
+		8522DBD11C058C81002B98D1 /* XCDYouTubeKit.framework.dSYM in Resources */ = {isa = PBXBuildFile; fileRef = 8522DBCF1C058C81002B98D1 /* XCDYouTubeKit.framework.dSYM */; };
+		8522DBD51C058C9E002B98D1 /* Alamofire.framework.dSYM in Resources */ = {isa = PBXBuildFile; fileRef = 8522DBD31C058C9E002B98D1 /* Alamofire.framework.dSYM */; };
+		8522DBD61C05B533002B98D1 /* XCDYouTubeKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8522DBCE1C058C81002B98D1 /* XCDYouTubeKit.framework */; };
+		8522DBD71C05B535002B98D1 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8522DBD21C058C9E002B98D1 /* Alamofire.framework */; };
 		858A7A351BFA91FC00989324 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8508184D1BF6B55D002A0731 /* AVFoundation.framework */; };
 		858A7A361BFA920100989324 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8508184B1BF6B49F002A0731 /* MediaPlayer.framework */; };
-		85E1DE321BFAB4CA0033E9AD /* Alamofire.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 85E1DE301BFAB4CA0033E9AD /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		85E1DE331BFAB4CA0033E9AD /* XCDYouTubeKit.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 85E1DE311BFAB4CA0033E9AD /* XCDYouTubeKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		85E1DE341BFAB51F0033E9AD /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 85E1DE301BFAB4CA0033E9AD /* Alamofire.framework */; };
-		85E1DE351BFAB5210033E9AD /* XCDYouTubeKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 85E1DE311BFAB4CA0033E9AD /* XCDYouTubeKit.framework */; };
-		85EDEA7A1BFA983C0020554F /* 40F9730F-14E2-36DA-B900-F012898B9FF8.bcsymbolmap in Resources */ = {isa = PBXBuildFile; fileRef = 85EDEA761BFA983C0020554F /* 40F9730F-14E2-36DA-B900-F012898B9FF8.bcsymbolmap */; };
-		85EDEA7B1BFA983C0020554F /* 50DAA3BA-6F4F-389E-95E1-F87719BC1018.bcsymbolmap in Resources */ = {isa = PBXBuildFile; fileRef = 85EDEA771BFA983C0020554F /* 50DAA3BA-6F4F-389E-95E1-F87719BC1018.bcsymbolmap */; };
-		85EDEA7D1BFA983C0020554F /* XCDYouTubeKit.framework.dSYM in Resources */ = {isa = PBXBuildFile; fileRef = 85EDEA791BFA983C0020554F /* XCDYouTubeKit.framework.dSYM */; };
 		85EDEA7F1BFA9A960020554F /* XCDYoutubeKit+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85EDEA7E1BFA9A960020554F /* XCDYoutubeKit+Extension.swift */; };
 		85EDEA811BFAA6C70020554F /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 85EDEA801BFAA6C70020554F /* CoreMedia.framework */; };
 		85EDEA831BFAAB570020554F /* UIViewController+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85EDEA821BFAAB570020554F /* UIViewController+Utils.swift */; };
-		85EDEA881BFAAFE20020554F /* Alamofire.framework.dSYM in Resources */ = {isa = PBXBuildFile; fileRef = 85EDEA861BFAAFE20020554F /* Alamofire.framework.dSYM */; };
-		85EDEA8B1BFAAFEC0020554F /* 2AAEE10D-EF04-3600-B9AB-E827FEEDF4A7.bcsymbolmap in Resources */ = {isa = PBXBuildFile; fileRef = 85EDEA891BFAAFEC0020554F /* 2AAEE10D-EF04-3600-B9AB-E827FEEDF4A7.bcsymbolmap */; };
-		85EDEA8C1BFAAFEC0020554F /* 523CF06F-02BF-3281-8A04-109C6AAD24BD.bcsymbolmap in Resources */ = {isa = PBXBuildFile; fileRef = 85EDEA8A1BFAAFEC0020554F /* 523CF06F-02BF-3281-8A04-109C6AAD24BD.bcsymbolmap */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -38,8 +35,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				85E1DE321BFAB4CA0033E9AD /* Alamofire.framework in CopyFiles */,
-				85E1DE331BFAB4CA0033E9AD /* XCDYouTubeKit.framework in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -56,6 +51,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		850106DE1C071A56007FA519 /* DownloadManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownloadManager.swift; sourceTree = "<group>"; };
+		850106E01C072F04007FA519 /* Encodable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Encodable.swift; sourceTree = "<group>"; };
+		850106E21C072FF9007FA519 /* Download.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Download.swift; sourceTree = "<group>"; };
 		8508182E1BF68944002A0731 /* YouTube Downloader.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "YouTube Downloader.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		850818311BF68944002A0731 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		850818331BF68944002A0731 /* ListVideosVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListVideosVC.swift; sourceTree = "<group>"; };
@@ -67,17 +65,13 @@
 		8508184B1BF6B49F002A0731 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		8508184D1BF6B55D002A0731 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		8508184F1BF6B581002A0731 /* AVKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVKit.framework; path = System/Library/Frameworks/AVKit.framework; sourceTree = SDKROOT; };
-		85E1DE301BFAB4CA0033E9AD /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = Carthage/Build/iOS/Alamofire.framework; sourceTree = "<group>"; };
-		85E1DE311BFAB4CA0033E9AD /* XCDYouTubeKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCDYouTubeKit.framework; path = Carthage/Build/iOS/XCDYouTubeKit.framework; sourceTree = "<group>"; };
-		85EDEA761BFA983C0020554F /* 40F9730F-14E2-36DA-B900-F012898B9FF8.bcsymbolmap */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "40F9730F-14E2-36DA-B900-F012898B9FF8.bcsymbolmap"; path = "Carthage/Build/iOS/40F9730F-14E2-36DA-B900-F012898B9FF8.bcsymbolmap"; sourceTree = "<group>"; };
-		85EDEA771BFA983C0020554F /* 50DAA3BA-6F4F-389E-95E1-F87719BC1018.bcsymbolmap */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "50DAA3BA-6F4F-389E-95E1-F87719BC1018.bcsymbolmap"; path = "Carthage/Build/iOS/50DAA3BA-6F4F-389E-95E1-F87719BC1018.bcsymbolmap"; sourceTree = "<group>"; };
-		85EDEA791BFA983C0020554F /* XCDYouTubeKit.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; name = XCDYouTubeKit.framework.dSYM; path = Carthage/Build/iOS/XCDYouTubeKit.framework.dSYM; sourceTree = "<group>"; };
+		8522DBCE1C058C81002B98D1 /* XCDYouTubeKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCDYouTubeKit.framework; path = Carthage/Build/iOS/XCDYouTubeKit.framework; sourceTree = "<group>"; };
+		8522DBCF1C058C81002B98D1 /* XCDYouTubeKit.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; name = XCDYouTubeKit.framework.dSYM; path = Carthage/Build/iOS/XCDYouTubeKit.framework.dSYM; sourceTree = "<group>"; };
+		8522DBD21C058C9E002B98D1 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = Carthage/Build/iOS/Alamofire.framework; sourceTree = "<group>"; };
+		8522DBD31C058C9E002B98D1 /* Alamofire.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; name = Alamofire.framework.dSYM; path = Carthage/Build/iOS/Alamofire.framework.dSYM; sourceTree = "<group>"; };
 		85EDEA7E1BFA9A960020554F /* XCDYoutubeKit+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "XCDYoutubeKit+Extension.swift"; sourceTree = "<group>"; };
 		85EDEA801BFAA6C70020554F /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
 		85EDEA821BFAAB570020554F /* UIViewController+Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Utils.swift"; sourceTree = "<group>"; };
-		85EDEA861BFAAFE20020554F /* Alamofire.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; name = Alamofire.framework.dSYM; path = Carthage/Build/iOS/Alamofire.framework.dSYM; sourceTree = "<group>"; };
-		85EDEA891BFAAFEC0020554F /* 2AAEE10D-EF04-3600-B9AB-E827FEEDF4A7.bcsymbolmap */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "2AAEE10D-EF04-3600-B9AB-E827FEEDF4A7.bcsymbolmap"; path = "Carthage/Build/iOS/2AAEE10D-EF04-3600-B9AB-E827FEEDF4A7.bcsymbolmap"; sourceTree = "<group>"; };
-		85EDEA8A1BFAAFEC0020554F /* 523CF06F-02BF-3281-8A04-109C6AAD24BD.bcsymbolmap */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "523CF06F-02BF-3281-8A04-109C6AAD24BD.bcsymbolmap"; path = "Carthage/Build/iOS/523CF06F-02BF-3281-8A04-109C6AAD24BD.bcsymbolmap"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,11 +80,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				85EDEA811BFAA6C70020554F /* CoreMedia.framework in Frameworks */,
+				8522DBD71C05B535002B98D1 /* Alamofire.framework in Frameworks */,
+				8522DBD61C05B533002B98D1 /* XCDYouTubeKit.framework in Frameworks */,
 				858A7A361BFA920100989324 /* MediaPlayer.framework in Frameworks */,
 				858A7A351BFA91FC00989324 /* AVFoundation.framework in Frameworks */,
 				850818501BF6B581002A0731 /* AVKit.framework in Frameworks */,
-				85E1DE341BFAB51F0033E9AD /* Alamofire.framework in Frameworks */,
-				85E1DE351BFAB5210033E9AD /* XCDYouTubeKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -126,6 +120,9 @@
 				8508183F1BF68944002A0731 /* Info.plist */,
 				85EDEA7E1BFA9A960020554F /* XCDYoutubeKit+Extension.swift */,
 				85EDEA821BFAAB570020554F /* UIViewController+Utils.swift */,
+				850106DE1C071A56007FA519 /* DownloadManager.swift */,
+				850106E01C072F04007FA519 /* Encodable.swift */,
+				850106E21C072FF9007FA519 /* Download.swift */,
 			);
 			path = "YouTube Downloader";
 			sourceTree = "<group>";
@@ -146,10 +143,8 @@
 		85EDEA751BFA98300020554F /* XCDYouTubeKit */ = {
 			isa = PBXGroup;
 			children = (
-				85E1DE311BFAB4CA0033E9AD /* XCDYouTubeKit.framework */,
-				85EDEA761BFA983C0020554F /* 40F9730F-14E2-36DA-B900-F012898B9FF8.bcsymbolmap */,
-				85EDEA771BFA983C0020554F /* 50DAA3BA-6F4F-389E-95E1-F87719BC1018.bcsymbolmap */,
-				85EDEA791BFA983C0020554F /* XCDYouTubeKit.framework.dSYM */,
+				8522DBCE1C058C81002B98D1 /* XCDYouTubeKit.framework */,
+				8522DBCF1C058C81002B98D1 /* XCDYouTubeKit.framework.dSYM */,
 			);
 			name = XCDYouTubeKit;
 			sourceTree = "<group>";
@@ -157,10 +152,8 @@
 		85EDEA841BFAAFD00020554F /* Alamofire */ = {
 			isa = PBXGroup;
 			children = (
-				85E1DE301BFAB4CA0033E9AD /* Alamofire.framework */,
-				85EDEA861BFAAFE20020554F /* Alamofire.framework.dSYM */,
-				85EDEA891BFAAFEC0020554F /* 2AAEE10D-EF04-3600-B9AB-E827FEEDF4A7.bcsymbolmap */,
-				85EDEA8A1BFAAFEC0020554F /* 523CF06F-02BF-3281-8A04-109C6AAD24BD.bcsymbolmap */,
+				8522DBD21C058C9E002B98D1 /* Alamofire.framework */,
+				8522DBD31C058C9E002B98D1 /* Alamofire.framework.dSYM */,
 			);
 			name = Alamofire;
 			sourceTree = "<group>";
@@ -226,15 +219,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				85EDEA8B1BFAAFEC0020554F /* 2AAEE10D-EF04-3600-B9AB-E827FEEDF4A7.bcsymbolmap in Resources */,
-				85EDEA8C1BFAAFEC0020554F /* 523CF06F-02BF-3281-8A04-109C6AAD24BD.bcsymbolmap in Resources */,
-				85EDEA7A1BFA983C0020554F /* 40F9730F-14E2-36DA-B900-F012898B9FF8.bcsymbolmap in Resources */,
-				85EDEA881BFAAFE20020554F /* Alamofire.framework.dSYM in Resources */,
 				8508183E1BF68944002A0731 /* LaunchScreen.storyboard in Resources */,
+				8522DBD11C058C81002B98D1 /* XCDYouTubeKit.framework.dSYM in Resources */,
+				8522DBD51C058C9E002B98D1 /* Alamofire.framework.dSYM in Resources */,
 				8508183B1BF68944002A0731 /* Assets.xcassets in Resources */,
-				85EDEA7B1BFA983C0020554F /* 50DAA3BA-6F4F-389E-95E1-F87719BC1018.bcsymbolmap in Resources */,
 				850818391BF68944002A0731 /* Main.storyboard in Resources */,
-				85EDEA7D1BFA983C0020554F /* XCDYouTubeKit.framework.dSYM in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -248,6 +237,7 @@
 			);
 			inputPaths = (
 				"$(SRCROOT)/Carthage/Build/iOS/XCDYouTubeKit.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/Alamofire.framework",
 			);
 			name = Carthage;
 			outputPaths = (
@@ -264,6 +254,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				85EDEA7F1BFA9A960020554F /* XCDYoutubeKit+Extension.swift in Sources */,
+				850106E31C072FF9007FA519 /* Download.swift in Sources */,
+				850106E11C072F04007FA519 /* Encodable.swift in Sources */,
+				850106DF1C071A56007FA519 /* DownloadManager.swift in Sources */,
 				850818361BF68944002A0731 /* DownloadVideoVC.swift in Sources */,
 				850818321BF68944002A0731 /* AppDelegate.swift in Sources */,
 				850818341BF68944002A0731 /* ListVideosVC.swift in Sources */,

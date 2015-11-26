@@ -22,6 +22,53 @@
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <animations/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="VideoCell" id="QlV-NK-Ygp" customClass="VideoCell" customModule="YouTube_Downloader" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="92" width="600" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="QlV-NK-Ygp" id="rnN-ig-XgL">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" horizontalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="Durée" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G0f-O3-ngR">
+                                                    <rect key="frame" x="541" y="12" width="44" height="19.5"/>
+                                                    <animations/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <color key="textColor" red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Nom vidéo" textAlignment="natural" lineBreakMode="middleTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h7z-an-5Ad">
+                                                    <rect key="frame" x="15" y="12" width="78" height="19.5"/>
+                                                    <animations/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <progressView hidden="YES" opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="3bK-EG-2GF">
+                                                    <rect key="frame" x="0.0" y="41" width="600" height="2"/>
+                                                    <animations/>
+                                                </progressView>
+                                            </subviews>
+                                            <animations/>
+                                            <constraints>
+                                                <constraint firstAttribute="bottom" secondItem="3bK-EG-2GF" secondAttribute="bottom" id="4RM-i2-uvF"/>
+                                                <constraint firstItem="3bK-EG-2GF" firstAttribute="leading" secondItem="rnN-ig-XgL" secondAttribute="leading" id="5Nm-k6-MzX"/>
+                                                <constraint firstItem="h7z-an-5Ad" firstAttribute="centerY" secondItem="rnN-ig-XgL" secondAttribute="centerY" id="9UF-P0-saM"/>
+                                                <constraint firstItem="G0f-O3-ngR" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="h7z-an-5Ad" secondAttribute="trailing" constant="20" id="B5T-qi-39S"/>
+                                                <constraint firstItem="G0f-O3-ngR" firstAttribute="centerY" secondItem="rnN-ig-XgL" secondAttribute="centerY" id="KLK-Ob-arY"/>
+                                                <constraint firstItem="h7z-an-5Ad" firstAttribute="leading" secondItem="rnN-ig-XgL" secondAttribute="leading" constant="15" id="dnx-ld-qRO"/>
+                                                <constraint firstAttribute="trailing" secondItem="G0f-O3-ngR" secondAttribute="trailing" constant="15" id="oRT-Pr-yCr"/>
+                                                <constraint firstAttribute="trailing" secondItem="3bK-EG-2GF" secondAttribute="trailing" id="qcz-PY-jW2"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <animations/>
+                                        <connections>
+                                            <outlet property="progressView" destination="3bK-EG-2GF" id="2uf-l9-hJs"/>
+                                            <outlet property="rightDetail" destination="G0f-O3-ngR" id="mc1-CS-WG2"/>
+                                            <outlet property="title" destination="h7z-an-5Ad" id="x3o-D8-CdR"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
                                 <connections>
                                     <outlet property="dataSource" destination="9pv-A4-QxB" id="GCv-hj-b2M"/>
                                     <outlet property="delegate" destination="9pv-A4-QxB" id="3CE-GM-pLq"/>
@@ -107,8 +154,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="ETv7Rsf8088" borderStyle="roundedRect" placeholder="Video identifier" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Arh-XD-lgY">
-                                <rect key="frame" x="20" y="84" width="560" height="30"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="https://www.youtube.com/watch?v=dQw4w9WgXcQ" borderStyle="roundedRect" placeholder="https://www.youtube.com/watch?v=dQw4w9WgXcQ" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Arh-XD-lgY">
+                                <rect key="frame" x="20" y="84" width="518" height="30"/>
                                 <animations/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
@@ -117,41 +164,67 @@
                                 </connections>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mbZ-Uo-4oe">
-                                <rect key="frame" x="20" y="122" width="560" height="21"/>
+                                <rect key="frame" x="20" y="122" width="560" height="20.5"/>
                                 <animations/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="kvb-YA-WX8">
-                                <rect key="frame" x="150" y="151" width="300" height="155"/>
+                                <rect key="frame" x="150" y="150" width="300" height="155"/>
                                 <animations/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="155" id="RYZ-oM-gGx"/>
                                 </constraints>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZBi-Fl-MIj">
-                                <rect key="frame" x="20" y="314" width="560" height="30"/>
+                                <rect key="frame" x="20" y="313" width="560" height="30"/>
                                 <animations/>
                                 <state key="normal" title="Télécharger la vidéo !"/>
                                 <connections>
                                     <action selector="downloadCurrentVideo" destination="8rJ-Kc-sve" eventType="touchUpInside" id="kPI-av-mzf"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" horizontalCompressionResistancePriority="751" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gGh-iw-ceZ">
+                                <rect key="frame" x="546" y="84" width="34" height="30"/>
+                                <animations/>
+                                <state key="normal" title="Load"/>
+                                <connections>
+                                    <action selector="loadVideoInfos" destination="8rJ-Kc-sve" eventType="touchUpInside" id="7aQ-ib-kis"/>
+                                </connections>
+                            </button>
+                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="eRK-sn-NyY">
+                                <rect key="frame" x="20" y="351" width="560" height="2"/>
+                                <animations/>
+                            </progressView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Finis ?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ntV-NV-xI0">
+                                <rect key="frame" x="20" y="361" width="48" height="21"/>
+                                <animations/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="eRK-sn-NyY" firstAttribute="top" secondItem="ZBi-Fl-MIj" secondAttribute="bottom" constant="8" id="3b3-Af-Bp4"/>
                             <constraint firstItem="mbZ-Uo-4oe" firstAttribute="top" secondItem="Arh-XD-lgY" secondAttribute="bottom" constant="8" id="7LB-pV-dNe"/>
+                            <constraint firstItem="gGh-iw-ceZ" firstAttribute="leading" secondItem="Arh-XD-lgY" secondAttribute="trailing" constant="8" id="7ng-2y-9m1"/>
                             <constraint firstAttribute="trailing" secondItem="ZBi-Fl-MIj" secondAttribute="trailing" constant="20" id="91T-AH-KvM"/>
                             <constraint firstItem="Arh-XD-lgY" firstAttribute="leading" secondItem="QS5-Rx-YEW" secondAttribute="leading" constant="20" id="9Vt-ee-TGe"/>
-                            <constraint firstAttribute="trailing" secondItem="Arh-XD-lgY" secondAttribute="trailing" constant="20" id="XO4-U5-H4g"/>
+                            <constraint firstItem="eRK-sn-NyY" firstAttribute="leading" secondItem="QS5-Rx-YEW" secondAttribute="leading" constant="20" id="9dr-NP-Gmf"/>
+                            <constraint firstItem="ntV-NV-xI0" firstAttribute="leading" secondItem="QS5-Rx-YEW" secondAttribute="leading" constant="20" id="Gb5-Ko-70T"/>
+                            <constraint firstItem="ntV-NV-xI0" firstAttribute="top" secondItem="eRK-sn-NyY" secondAttribute="bottom" constant="8" id="JVq-bC-uE7"/>
+                            <constraint firstAttribute="trailing" secondItem="gGh-iw-ceZ" secondAttribute="trailing" constant="20" id="O3f-AG-ngg"/>
                             <constraint firstItem="kvb-YA-WX8" firstAttribute="width" secondItem="QS5-Rx-YEW" secondAttribute="width" multiplier="0.5" id="YSE-5I-vyS"/>
                             <constraint firstItem="mbZ-Uo-4oe" firstAttribute="leading" secondItem="QS5-Rx-YEW" secondAttribute="leading" constant="20" id="YgW-Zj-yKX"/>
                             <constraint firstItem="kvb-YA-WX8" firstAttribute="top" secondItem="mbZ-Uo-4oe" secondAttribute="bottom" constant="8" id="a25-2B-rxQ"/>
                             <constraint firstItem="ZBi-Fl-MIj" firstAttribute="leading" secondItem="QS5-Rx-YEW" secondAttribute="leading" constant="20" id="eBZ-Ca-FqY"/>
+                            <constraint firstAttribute="trailing" secondItem="eRK-sn-NyY" secondAttribute="trailing" constant="20" id="gob-kH-CJ0"/>
                             <constraint firstAttribute="trailing" secondItem="mbZ-Uo-4oe" secondAttribute="trailing" constant="20" id="iId-jG-n2a"/>
                             <constraint firstItem="kvb-YA-WX8" firstAttribute="centerX" secondItem="QS5-Rx-YEW" secondAttribute="centerX" id="nmP-Sp-0XQ"/>
+                            <constraint firstItem="gGh-iw-ceZ" firstAttribute="centerY" secondItem="Arh-XD-lgY" secondAttribute="centerY" id="qHx-gA-c28"/>
                             <constraint firstItem="Arh-XD-lgY" firstAttribute="top" secondItem="L7p-HK-0SC" secondAttribute="bottom" constant="20" id="ubz-kp-JnR"/>
                             <constraint firstItem="ZBi-Fl-MIj" firstAttribute="top" secondItem="kvb-YA-WX8" secondAttribute="bottom" constant="8" id="xjP-UC-Kbf"/>
                         </constraints>
@@ -166,6 +239,8 @@
                     <connections>
                         <outlet property="image" destination="kvb-YA-WX8" id="Yu0-bR-d4b"/>
                         <outlet property="label" destination="mbZ-Uo-4oe" id="EIE-Xy-gdQ"/>
+                        <outlet property="progressView" destination="eRK-sn-NyY" id="aoV-FI-wSm"/>
+                        <outlet property="statusLabel" destination="ntV-NV-xI0" id="REP-Qt-sNe"/>
                         <outlet property="textField" destination="Arh-XD-lgY" id="9s9-jg-8Nf"/>
                     </connections>
                 </viewController>
