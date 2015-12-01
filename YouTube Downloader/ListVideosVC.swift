@@ -23,6 +23,10 @@ class ListVideosVC: UIViewController {
 	var player: AVPlayer?
 	var files = [String]()
 
+	override func preferredStatusBarStyle() -> UIStatusBarStyle {
+		return .LightContent
+	}
+
 	func refreshData() {
 		let path = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0]
 

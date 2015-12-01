@@ -120,9 +120,9 @@
 				8508183F1BF68944002A0731 /* Info.plist */,
 				85EDEA7E1BFA9A960020554F /* XCDYoutubeKit+Extension.swift */,
 				85EDEA821BFAAB570020554F /* UIViewController+Utils.swift */,
+				850106E21C072FF9007FA519 /* Download.swift */,
 				850106DE1C071A56007FA519 /* DownloadManager.swift */,
 				850106E01C072F04007FA519 /* Encodable.swift */,
-				850106E21C072FF9007FA519 /* Download.swift */,
 			);
 			path = "YouTube Downloader";
 			sourceTree = "<group>";

@@ -18,6 +18,10 @@ class DownloadVideoVC: UIViewController, UITextFieldDelegate {
 		return false
 	}
 
+	override func preferredStatusBarStyle() -> UIStatusBarStyle {
+		return .LightContent
+	}
+
 	@IBAction func loadVideoInfos() {
 		guard let
 			text = textField.text,

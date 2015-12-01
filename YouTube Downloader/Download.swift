@@ -7,20 +7,27 @@ struct Download: Encodable {
 	}
 
 	var name: String
-	var path: String
+	var identifier: String
+	var videoPath: String
+	var audioPath: String?
 	var thumbnail: UIImage?
 	var status: Status
+
+	var progressBlocks: [(bytesRead: Int64, totalBytesRead: Int64, totalBytesExpectedToRead: Int64) -> Void] = []
 
 	init?(dictionaryRepresentation: NSDictionary?) {
 		guard let
 			dic = dictionaryRepresentation,
 			name = dic["name"] as? String,
-			path = dic["path"] as? String,
+			identifier = dic["identifier"] as? String,
+			videoPath = dic["videoPath"] as? String,
 			statusString = dic["status"] as? String,
 			status = Status(rawValue: statusString) else { return nil }
 
 		self.name = name
-		self.path = path
+		self.identifier = identifier
+		self.videoPath = videoPath
+		self.audioPath = dic["audioPath"] as? String
 		self.status = status
 
 		if let thumbnail = dic["thumbnail"] as? NSData {
@@ -31,9 +38,15 @@ struct Download: Encodable {
 	func encode() -> NSDictionary {
 		var representation: [String: AnyObject] = [
 			"name": name,
-			"path": path,
+			"identifier": identifier,
+			"videoPath": videoPath,
 			"status": status.rawValue
 		]
+
+		if let audioPath = audioPath {
+			representation["audioPath"] = audioPath
+		}
+
 		if let thumbnail = thumbnail, thumbnailData = UIImagePNGRepresentation(thumbnail) {
 			representation["thumbnail"] = thumbnailData
 		}

@@ -27,18 +27,18 @@
                                         <rect key="frame" x="0.0" y="92" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="QlV-NK-Ygp" id="rnN-ig-XgL">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" horizontalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="Durée" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G0f-O3-ngR">
-                                                    <rect key="frame" x="541" y="12" width="44" height="19.5"/>
+                                                    <rect key="frame" x="541" y="12" width="44" height="20"/>
                                                     <animations/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <color key="textColor" red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Nom vidéo" textAlignment="natural" lineBreakMode="middleTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h7z-an-5Ad">
-                                                    <rect key="frame" x="15" y="12" width="78" height="19.5"/>
+                                                    <rect key="frame" x="15" y="12" width="78" height="20"/>
                                                     <animations/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -112,10 +112,16 @@
         <scene sceneID="AS2-Sh-gWr">
             <objects>
                 <navigationController id="jvK-qD-XuP" sceneMemberID="viewController">
+                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Th8-vs-2DR">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <animations/>
+                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="barTintColor" red="0.87450980392156863" green="0.047273539927022289" blue="0.027540681137633725" alpha="1" colorSpace="calibratedRGB"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </textAttributes>
                     </navigationBar>
                     <connections>
                         <segue destination="9pv-A4-QxB" kind="relationship" relationship="rootViewController" id="IzQ-O8-nAC"/>
@@ -133,6 +139,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <animations/>
+                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="barTintColor" red="0.87450980389999999" green="0.047273539929999997" blue="0.027540681139999999" alpha="1" colorSpace="calibratedRGB"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </textAttributes>
                     </navigationBar>
                     <connections>
                         <segue destination="8rJ-Kc-sve" kind="relationship" relationship="rootViewController" id="O7e-PU-TAv"/>
@@ -155,7 +166,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="https://www.youtube.com/watch?v=dQw4w9WgXcQ" borderStyle="roundedRect" placeholder="https://www.youtube.com/watch?v=dQw4w9WgXcQ" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Arh-XD-lgY">
-                                <rect key="frame" x="20" y="84" width="518" height="30"/>
+                                <rect key="frame" x="20" y="84" width="469" height="30"/>
                                 <animations/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
@@ -164,21 +175,21 @@
                                 </connections>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mbZ-Uo-4oe">
-                                <rect key="frame" x="20" y="122" width="560" height="20.5"/>
+                                <rect key="frame" x="20" y="122" width="560" height="21"/>
                                 <animations/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="kvb-YA-WX8">
-                                <rect key="frame" x="150" y="150" width="300" height="155"/>
+                                <rect key="frame" x="150" y="151" width="300" height="155"/>
                                 <animations/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="155" id="RYZ-oM-gGx"/>
                                 </constraints>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZBi-Fl-MIj">
-                                <rect key="frame" x="20" y="313" width="560" height="30"/>
+                                <rect key="frame" x="20" y="314" width="560" height="30"/>
                                 <animations/>
                                 <state key="normal" title="Télécharger la vidéo !"/>
                                 <connections>
@@ -194,26 +205,31 @@
                                 </connections>
                             </button>
                             <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="eRK-sn-NyY">
-                                <rect key="frame" x="20" y="351" width="560" height="2"/>
+                                <rect key="frame" x="20" y="352" width="560" height="2"/>
                                 <animations/>
                             </progressView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Finis ?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ntV-NV-xI0">
-                                <rect key="frame" x="20" y="361" width="48" height="21"/>
+                                <rect key="frame" x="20" y="362" width="48" height="21"/>
                                 <animations/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DXa-ZK-uEJ">
+                                <rect key="frame" x="499" y="84" width="39" height="30"/>
+                                <animations/>
+                                <state key="normal" title="Paste"/>
+                            </button>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="eRK-sn-NyY" firstAttribute="top" secondItem="ZBi-Fl-MIj" secondAttribute="bottom" constant="8" id="3b3-Af-Bp4"/>
                             <constraint firstItem="mbZ-Uo-4oe" firstAttribute="top" secondItem="Arh-XD-lgY" secondAttribute="bottom" constant="8" id="7LB-pV-dNe"/>
-                            <constraint firstItem="gGh-iw-ceZ" firstAttribute="leading" secondItem="Arh-XD-lgY" secondAttribute="trailing" constant="8" id="7ng-2y-9m1"/>
                             <constraint firstAttribute="trailing" secondItem="ZBi-Fl-MIj" secondAttribute="trailing" constant="20" id="91T-AH-KvM"/>
                             <constraint firstItem="Arh-XD-lgY" firstAttribute="leading" secondItem="QS5-Rx-YEW" secondAttribute="leading" constant="20" id="9Vt-ee-TGe"/>
                             <constraint firstItem="eRK-sn-NyY" firstAttribute="leading" secondItem="QS5-Rx-YEW" secondAttribute="leading" constant="20" id="9dr-NP-Gmf"/>
+                            <constraint firstItem="gGh-iw-ceZ" firstAttribute="leading" secondItem="DXa-ZK-uEJ" secondAttribute="trailing" constant="8" id="Ehf-IH-eNJ"/>
                             <constraint firstItem="ntV-NV-xI0" firstAttribute="leading" secondItem="QS5-Rx-YEW" secondAttribute="leading" constant="20" id="Gb5-Ko-70T"/>
                             <constraint firstItem="ntV-NV-xI0" firstAttribute="top" secondItem="eRK-sn-NyY" secondAttribute="bottom" constant="8" id="JVq-bC-uE7"/>
                             <constraint firstAttribute="trailing" secondItem="gGh-iw-ceZ" secondAttribute="trailing" constant="20" id="O3f-AG-ngg"/>
@@ -224,7 +240,9 @@
                             <constraint firstAttribute="trailing" secondItem="eRK-sn-NyY" secondAttribute="trailing" constant="20" id="gob-kH-CJ0"/>
                             <constraint firstAttribute="trailing" secondItem="mbZ-Uo-4oe" secondAttribute="trailing" constant="20" id="iId-jG-n2a"/>
                             <constraint firstItem="kvb-YA-WX8" firstAttribute="centerX" secondItem="QS5-Rx-YEW" secondAttribute="centerX" id="nmP-Sp-0XQ"/>
+                            <constraint firstItem="DXa-ZK-uEJ" firstAttribute="centerY" secondItem="Arh-XD-lgY" secondAttribute="centerY" id="nyh-a8-A1z"/>
                             <constraint firstItem="gGh-iw-ceZ" firstAttribute="centerY" secondItem="Arh-XD-lgY" secondAttribute="centerY" id="qHx-gA-c28"/>
+                            <constraint firstItem="DXa-ZK-uEJ" firstAttribute="leading" secondItem="Arh-XD-lgY" secondAttribute="trailing" constant="10" id="uDZ-A9-lHN"/>
                             <constraint firstItem="Arh-XD-lgY" firstAttribute="top" secondItem="L7p-HK-0SC" secondAttribute="bottom" constant="20" id="ubz-kp-JnR"/>
                             <constraint firstItem="ZBi-Fl-MIj" firstAttribute="top" secondItem="kvb-YA-WX8" secondAttribute="bottom" constant="8" id="xjP-UC-Kbf"/>
                         </constraints>
@@ -252,4 +270,5 @@
     <resources>
         <image name="first" width="30" height="30"/>
     </resources>
+    <color key="tintColor" red="0.87450980389999999" green="0.047273539929999997" blue="0.027540681139999999" alpha="1" colorSpace="calibratedRGB"/>
 </document>
