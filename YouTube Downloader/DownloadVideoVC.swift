@@ -70,7 +70,6 @@ class DownloadVideoVC: UIViewController, UITextFieldDelegate {
 		currentDownload.video?.cancel()
 		currentDownload.audio?.cancel()
 		currentDownload = (nil, nil)
-		currentProgress = (nil, nil)
 
 		navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Done, target: self, action: "dismissViewController")
 	}
@@ -81,62 +80,34 @@ class DownloadVideoVC: UIViewController, UITextFieldDelegate {
 		navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Cancel, target: self, action: "stopDownload")
 		progressView.setProgress(0, animated: true)
 
-		let path = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0]
-
 		if quality.isDash {
 			guard let audioURL = video.streamURLs[YouTubeAudioQuality.Medium128kbps.rawValue] else { return }
 
-			currentDownload.audio = Alamofire.download(.GET, audioURL) { tempURL, response in
-				return NSURL(fileURLWithPath: path + "/" + video.identifier + ".m4a")
-				}.progress { _, totalBytesRead, totalBytesExpectedToRead in
-					self.updateStatus(.Audio, bytesRead: 0, totalBytesRead: totalBytesRead, totalBytesExpectedToRead: totalBytesExpectedToRead)
-				}.response { _, _, _, error in
-					if let error = error {
-						self.statusLabel.text = "Failed with error: \(error)"
-					} else {
+			DownloadManager.sharedManager.addVideo(videoURL, audioUrl: audioURL, name: video.description, identifier: video.identifier, progress: { _, totalBytesRead, totalBytesExpectedToRead in
+				self.updateStatus(0, totalBytesRead: totalBytesRead, totalBytesExpectedToRead: totalBytesExpectedToRead)
+				}, completion: { success in
+					if success {
 						self.statusLabel.text = "Downloaded file successfully"
+					} else {
+						self.statusLabel.text = "Failed"
 					}
-			}
-		}
-
-		currentDownload.video = Alamofire.download(.GET, videoURL) { tempURL, response in
-			return NSURL(fileURLWithPath: path + "/" + video.identifier + ".mp4")
-			}.progress { _, totalBytesRead, totalBytesExpectedToRead in
-				self.updateStatus(.Video, bytesRead: 0, totalBytesRead: totalBytesRead, totalBytesExpectedToRead: totalBytesExpectedToRead)
-			}.response { _, _, _, error in
-				if let error = error {
-					self.statusLabel.text = "Failed with error: \(error)"
-				} else {
-					self.statusLabel.text = "Downloaded file successfully"
-				}
-		}
-	}
-
-	private enum Type {
-		case Video
-		case Audio
-	}
-
-	private var currentProgress: (video: Float?, audio: Float?)
-
-	private func updateStatus(type: Type, bytesRead: Int64, totalBytesRead: Int64, totalBytesExpectedToRead: Int64) {
-		let progress: Float
-
-		switch type {
-		case .Video:
-			currentProgress.video = Float(totalBytesRead) / Float(totalBytesExpectedToRead)
-		case .Audio:
-			currentProgress.audio = Float(totalBytesRead) / Float(totalBytesExpectedToRead)
-		}
-
-		if let audioProgress = currentProgress.audio, videoProgress = currentProgress.video {
-			progress = (videoProgress + audioProgress) / 2.0
-		} else if let videoProgress = currentProgress.video {
-			progress = videoProgress
+			})
 		} else {
-			progress = 0.0
-		}
+			DownloadManager.sharedManager.addVideo(videoURL, name: video.description, identifier: video.identifier, progress: { _, totalBytesRead, totalBytesExpectedToRead in
+				self.updateStatus(0, totalBytesRead: totalBytesRead, totalBytesExpectedToRead: totalBytesExpectedToRead)
+				}, completion: { success in
+					if success {
+						self.statusLabel.text = "Downloaded file successfully"
+					} else {
+						self.statusLabel.text = "Failed"
+					}
+			})
 
+		}
+	}
+
+	private func updateStatus(bytesRead: Int64, totalBytesRead: Int64, totalBytesExpectedToRead: Int64) {
+		let progress = Float(totalBytesRead) / Float(totalBytesExpectedToRead)
 
 		dispatch_async(dispatch_get_main_queue()) {
 			self.progressView.setProgress(progress, animated: true)

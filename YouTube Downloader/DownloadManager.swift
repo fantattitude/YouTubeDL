@@ -1,3 +1,4 @@
+import Foundation
 import Alamofire
 
 class DownloadManager {
@@ -14,44 +15,36 @@ class DownloadManager {
 		return downloads.filter { $0.status == .Downloading }
 	}
 
-	func addDownload(url: NSURL, name: String) {
-		guard let videoURL = video.streamURLs[quality.rawValue] else { return }
+	var completionBlocks: [(DownloadManager) -> Void] = []
 
-		navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Cancel, target: self, action: "stopDownload")
-		progressView.setProgress(0, animated: true)
+	func aVideoCompleted(completed: (DownloadManager) -> Void) {
+		completionBlocks.append(completed)
+	}
 
+	func addVideo(videoUrl: NSURL, audioUrl: NSURL? = nil, name: String, identifier: String, progress: (Int64, Int64, Int64) -> Void, completion: (Bool) -> Void) {
 		let path = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0]
 
-		if quality.isDash {
-			guard let audioURL = video.streamURLs[YouTubeAudioQuality.Medium128kbps.rawValue] else { return }
+		var currentDownload = Download(name: name, identifier: identifier, videoPath: path + "/" + identifier + ".mp4")
 
-			currentDownload.audio = Alamofire.download(.GET, audioURL) { tempURL, response in
-				return NSURL(fileURLWithPath: path + "/" + video.identifier + ".m4a")
-				}.progress { _, totalBytesRead, totalBytesExpectedToRead in
-					self.updateStatus(.Audio, bytesRead: 0, totalBytesRead: totalBytesRead, totalBytesExpectedToRead: totalBytesExpectedToRead)
-				}.response { _, _, _, error in
-					if let error = error {
-						self.statusLabel.text = "Failed with error: \(error)"
-					} else {
-						self.statusLabel.text = "Downloaded file successfully"
-					}
+		if let audioUrl = audioUrl {
+			currentDownload.audioPath = path + "/" + identifier + ".m4a"
+
+			Alamofire.download(.GET, audioUrl) { tempURL, response in
+				return NSURL(fileURLWithPath: currentDownload.audioPath!)
 			}
 		}
 
-		currentDownload.video = Alamofire.download(.GET, videoURL) { tempURL, response in
-			return NSURL(fileURLWithPath: path + "/" + video.identifier + ".mp4")
-			}.progress { _, totalBytesRead, totalBytesExpectedToRead in
-				self.updateStatus(.Video, bytesRead: 0, totalBytesRead: totalBytesRead, totalBytesExpectedToRead: totalBytesExpectedToRead)
+		currentDownload.request = Alamofire.download(.GET, videoUrl) { tempURL, response in
+			return NSURL(fileURLWithPath: currentDownload.videoPath)
 			}.response { _, _, _, error in
-				if let error = error {
-					self.statusLabel.text = "Failed with error: \(error)"
-				} else {
-					self.statusLabel.text = "Downloaded file successfully"
-				}
+				guard error == nil else { return }
+				currentDownload.status = .ReadyToPlay
+				self.completionBlocks.forEach { $0(self) }
+				self.completionBlocks.removeAll()
 		}
+
+		downloads.append(currentDownload)
 	}
-
-
 
 	func loadFromDefaults() {
 		guard let arrayDownloads = NSUserDefaults.standardUserDefaults().objectForKey("downloads") as? [NSDictionary] else { return }

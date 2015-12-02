@@ -1,4 +1,5 @@
 import UIKit
+import Alamofire
 
 struct Download: Encodable {
 	enum Status: String {
@@ -13,7 +14,15 @@ struct Download: Encodable {
 	var thumbnail: UIImage?
 	var status: Status
 
-	var progressBlocks: [(bytesRead: Int64, totalBytesRead: Int64, totalBytesExpectedToRead: Int64) -> Void] = []
+	var request: Alamofire.Request?
+
+	init(name: String, identifier: String, videoPath: String, audioPath: String? = nil, status: Status = .Downloading) {
+		self.name = name
+		self.identifier = identifier
+		self.videoPath = videoPath
+		self.status = status
+		self.audioPath = audioPath
+	}
 
 	init?(dictionaryRepresentation: NSDictionary?) {
 		guard let
