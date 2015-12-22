@@ -23,6 +23,7 @@
 		8522DBD71C05B535002B98D1 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8522DBD21C058C9E002B98D1 /* Alamofire.framework */; };
 		858A7A351BFA91FC00989324 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8508184D1BF6B55D002A0731 /* AVFoundation.framework */; };
 		858A7A361BFA920100989324 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8508184B1BF6B49F002A0731 /* MediaPlayer.framework */; };
+		85C9B3AC1C24D02F00C41946 /* Dispatch+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85C9B3AB1C24D02F00C41946 /* Dispatch+Utils.swift */; };
 		85EDEA7F1BFA9A960020554F /* XCDYoutubeKit+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85EDEA7E1BFA9A960020554F /* XCDYoutubeKit+Extension.swift */; };
 		85EDEA811BFAA6C70020554F /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 85EDEA801BFAA6C70020554F /* CoreMedia.framework */; };
 		85EDEA831BFAAB570020554F /* UIViewController+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85EDEA821BFAAB570020554F /* UIViewController+Utils.swift */; };
@@ -69,6 +70,7 @@
 		8522DBCF1C058C81002B98D1 /* XCDYouTubeKit.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; name = XCDYouTubeKit.framework.dSYM; path = Carthage/Build/iOS/XCDYouTubeKit.framework.dSYM; sourceTree = "<group>"; };
 		8522DBD21C058C9E002B98D1 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = Carthage/Build/iOS/Alamofire.framework; sourceTree = "<group>"; };
 		8522DBD31C058C9E002B98D1 /* Alamofire.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; name = Alamofire.framework.dSYM; path = Carthage/Build/iOS/Alamofire.framework.dSYM; sourceTree = "<group>"; };
+		85C9B3AB1C24D02F00C41946 /* Dispatch+Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Dispatch+Utils.swift"; sourceTree = "<group>"; };
 		85EDEA7E1BFA9A960020554F /* XCDYoutubeKit+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "XCDYoutubeKit+Extension.swift"; sourceTree = "<group>"; };
 		85EDEA801BFAA6C70020554F /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
 		85EDEA821BFAAB570020554F /* UIViewController+Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Utils.swift"; sourceTree = "<group>"; };
@@ -123,6 +125,7 @@
 				850106E21C072FF9007FA519 /* Download.swift */,
 				850106DE1C071A56007FA519 /* DownloadManager.swift */,
 				850106E01C072F04007FA519 /* Encodable.swift */,
+				85C9B3AB1C24D02F00C41946 /* Dispatch+Utils.swift */,
 			);
 			path = "YouTube Downloader";
 			sourceTree = "<group>";
@@ -254,6 +257,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				85EDEA7F1BFA9A960020554F /* XCDYoutubeKit+Extension.swift in Sources */,
+				85C9B3AC1C24D02F00C41946 /* Dispatch+Utils.swift in Sources */,
 				850106E31C072FF9007FA519 /* Download.swift in Sources */,
 				850106E11C072F04007FA519 /* Encodable.swift in Sources */,
 				850106DF1C071A56007FA519 /* DownloadManager.swift in Sources */,

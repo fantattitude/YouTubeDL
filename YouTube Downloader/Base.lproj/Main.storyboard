@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9060" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="jvK-qD-XuP">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="jvK-qD-XuP">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
@@ -20,51 +20,55 @@
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="h0s-ZH-3Qs">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                                <animations/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="VideoCell" id="QlV-NK-Ygp" customClass="VideoCell" customModule="YouTube_Downloader" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="92" width="600" height="44"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="VideoCell" rowHeight="60" id="QlV-NK-Ygp" customClass="VideoCell" customModule="YouTube_Downloader" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="92" width="600" height="60"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="QlV-NK-Ygp" id="rnN-ig-XgL">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="59"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" horizontalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="Durée" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G0f-O3-ngR">
-                                                    <rect key="frame" x="541" y="12" width="44" height="20"/>
-                                                    <animations/>
+                                                    <rect key="frame" x="541" y="20" width="44" height="20"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <color key="textColor" red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Nom vidéo" textAlignment="natural" lineBreakMode="middleTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h7z-an-5Ad">
-                                                    <rect key="frame" x="15" y="12" width="78" height="20"/>
-                                                    <animations/>
+                                                    <rect key="frame" x="121" y="20" width="78" height="20"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <progressView hidden="YES" opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="3bK-EG-2GF">
-                                                    <rect key="frame" x="0.0" y="41" width="600" height="2"/>
-                                                    <animations/>
+                                                    <rect key="frame" x="0.0" y="57" width="600" height="2"/>
                                                 </progressView>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="2MW-hY-6tC">
+                                                    <rect key="frame" x="0.0" y="0.0" width="106" height="59"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="106" id="HME-gR-7KZ"/>
+                                                    </constraints>
+                                                </imageView>
                                             </subviews>
-                                            <animations/>
                                             <constraints>
                                                 <constraint firstAttribute="bottom" secondItem="3bK-EG-2GF" secondAttribute="bottom" id="4RM-i2-uvF"/>
                                                 <constraint firstItem="3bK-EG-2GF" firstAttribute="leading" secondItem="rnN-ig-XgL" secondAttribute="leading" id="5Nm-k6-MzX"/>
                                                 <constraint firstItem="h7z-an-5Ad" firstAttribute="centerY" secondItem="rnN-ig-XgL" secondAttribute="centerY" id="9UF-P0-saM"/>
                                                 <constraint firstItem="G0f-O3-ngR" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="h7z-an-5Ad" secondAttribute="trailing" constant="20" id="B5T-qi-39S"/>
                                                 <constraint firstItem="G0f-O3-ngR" firstAttribute="centerY" secondItem="rnN-ig-XgL" secondAttribute="centerY" id="KLK-Ob-arY"/>
-                                                <constraint firstItem="h7z-an-5Ad" firstAttribute="leading" secondItem="rnN-ig-XgL" secondAttribute="leading" constant="15" id="dnx-ld-qRO"/>
+                                                <constraint firstItem="2MW-hY-6tC" firstAttribute="top" secondItem="rnN-ig-XgL" secondAttribute="top" id="OWR-VY-6rw"/>
+                                                <constraint firstItem="h7z-an-5Ad" firstAttribute="leading" secondItem="2MW-hY-6tC" secondAttribute="trailing" constant="15" id="VcS-xg-4bE"/>
+                                                <constraint firstItem="2MW-hY-6tC" firstAttribute="leading" secondItem="rnN-ig-XgL" secondAttribute="leading" id="a2K-fC-gWg"/>
+                                                <constraint firstAttribute="bottom" secondItem="2MW-hY-6tC" secondAttribute="bottom" id="dhC-nY-0nJ"/>
                                                 <constraint firstAttribute="trailing" secondItem="G0f-O3-ngR" secondAttribute="trailing" constant="15" id="oRT-Pr-yCr"/>
                                                 <constraint firstAttribute="trailing" secondItem="3bK-EG-2GF" secondAttribute="trailing" id="qcz-PY-jW2"/>
                                             </constraints>
                                         </tableViewCellContentView>
-                                        <animations/>
                                         <connections>
                                             <outlet property="progressView" destination="3bK-EG-2GF" id="2uf-l9-hJs"/>
                                             <outlet property="rightDetail" destination="G0f-O3-ngR" id="mc1-CS-WG2"/>
+                                            <outlet property="thumbImageView" destination="2MW-hY-6tC" id="rnw-yN-Foc"/>
                                             <outlet property="title" destination="h7z-an-5Ad" id="x3o-D8-CdR"/>
                                         </connections>
                                     </tableViewCell>
@@ -75,7 +79,6 @@
                                 </connections>
                             </tableView>
                         </subviews>
-                        <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="h0s-ZH-3Qs" firstAttribute="leading" secondItem="tsR-hK-woN" secondAttribute="leading" id="1S1-TS-JeA"/>
@@ -116,9 +119,8 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Th8-vs-2DR">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <animations/>
                         <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <color key="barTintColor" red="0.87450980392156863" green="0.047273539927022289" blue="0.027540681137633725" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="barTintColor" red="0.77647058823529413" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <textAttributes key="titleTextAttributes">
                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         </textAttributes>
@@ -138,9 +140,8 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="335-iY-a2f">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <animations/>
                         <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <color key="barTintColor" red="0.87450980389999999" green="0.047273539929999997" blue="0.027540681139999999" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="barTintColor" red="0.77647058820000003" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <textAttributes key="titleTextAttributes">
                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         </textAttributes>
@@ -167,7 +168,6 @@
                         <subviews>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="https://www.youtube.com/watch?v=dQw4w9WgXcQ" borderStyle="roundedRect" placeholder="https://www.youtube.com/watch?v=dQw4w9WgXcQ" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Arh-XD-lgY">
                                 <rect key="frame" x="20" y="84" width="469" height="30"/>
-                                <animations/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <connections>
@@ -176,21 +176,18 @@
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mbZ-Uo-4oe">
                                 <rect key="frame" x="20" y="122" width="560" height="21"/>
-                                <animations/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="kvb-YA-WX8">
                                 <rect key="frame" x="150" y="151" width="300" height="155"/>
-                                <animations/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="155" id="RYZ-oM-gGx"/>
                                 </constraints>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZBi-Fl-MIj">
                                 <rect key="frame" x="20" y="314" width="560" height="30"/>
-                                <animations/>
                                 <state key="normal" title="Télécharger la vidéo !"/>
                                 <connections>
                                     <action selector="downloadCurrentVideo" destination="8rJ-Kc-sve" eventType="touchUpInside" id="kPI-av-mzf"/>
@@ -198,7 +195,6 @@
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" horizontalCompressionResistancePriority="751" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gGh-iw-ceZ">
                                 <rect key="frame" x="546" y="84" width="34" height="30"/>
-                                <animations/>
                                 <state key="normal" title="Load"/>
                                 <connections>
                                     <action selector="loadVideoInfos" destination="8rJ-Kc-sve" eventType="touchUpInside" id="7aQ-ib-kis"/>
@@ -206,22 +202,21 @@
                             </button>
                             <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="eRK-sn-NyY">
                                 <rect key="frame" x="20" y="352" width="560" height="2"/>
-                                <animations/>
                             </progressView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Finis ?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ntV-NV-xI0">
                                 <rect key="frame" x="20" y="362" width="48" height="21"/>
-                                <animations/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DXa-ZK-uEJ">
+                            <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" horizontalCompressionResistancePriority="751" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DXa-ZK-uEJ">
                                 <rect key="frame" x="499" y="84" width="39" height="30"/>
-                                <animations/>
                                 <state key="normal" title="Paste"/>
+                                <connections>
+                                    <action selector="paste" destination="8rJ-Kc-sve" eventType="touchUpInside" id="sco-rt-6XM"/>
+                                </connections>
                             </button>
                         </subviews>
-                        <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="eRK-sn-NyY" firstAttribute="top" secondItem="ZBi-Fl-MIj" secondAttribute="bottom" constant="8" id="3b3-Af-Bp4"/>
@@ -248,7 +243,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Download" id="41c-F2-KOL">
-                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="HAy-02-uRf">
+                        <barButtonItem key="rightBarButtonItem" systemItem="cancel" id="HAy-02-uRf">
                             <connections>
                                 <action selector="dismissViewController" destination="8rJ-Kc-sve" id="6mq-zK-cI5"/>
                             </connections>
@@ -257,6 +252,7 @@
                     <connections>
                         <outlet property="image" destination="kvb-YA-WX8" id="Yu0-bR-d4b"/>
                         <outlet property="label" destination="mbZ-Uo-4oe" id="EIE-Xy-gdQ"/>
+                        <outlet property="pasteButton" destination="DXa-ZK-uEJ" id="BL1-J5-uMQ"/>
                         <outlet property="progressView" destination="eRK-sn-NyY" id="aoV-FI-wSm"/>
                         <outlet property="statusLabel" destination="ntV-NV-xI0" id="REP-Qt-sNe"/>
                         <outlet property="textField" destination="Arh-XD-lgY" id="9s9-jg-8Nf"/>

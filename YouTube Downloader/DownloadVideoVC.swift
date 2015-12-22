@@ -2,12 +2,39 @@ import UIKit
 import XCDYouTubeKit
 import Alamofire
 
+enum YouTubeHelperError: ErrorType {
+	case RegexCreationError
+}
+
+class YouTubeHelper {
+	let youTubeURLPattern = "(?:youtube\\.com/(?:[^/]+/.+/|(?:v|e(?:mbed)?)/|.*[?&]v=)|youtu\\.be/)([^\"&?/ ]{11}).*"
+
+	func identifierFromYouTubeURL(url: String) -> String? {
+		guard let
+			regex = try? NSRegularExpression(pattern: youTubeURLPattern, options: [.CaseInsensitive]),
+			range = regex.firstMatchInString(url, options: [], range: (url as NSString).rangeOfString(url))?.rangeAtIndex(1)
+			else { return nil }
+
+		return (url as NSString).substringWithRange(range)
+	}
+
+	func videoWithURL(url: String, completion: (XCDYouTubeVideo?, ErrorType?) -> Void) {
+		guard let identifier = identifierFromYouTubeURL(url) else {
+			completion(nil, YouTubeHelperError.RegexCreationError)
+			return
+		}
+
+		XCDYouTubeClient.defaultClient().getVideoWithIdentifier(identifier, completionHandler: completion)
+	}
+}
+
 class DownloadVideoVC: UIViewController, UITextFieldDelegate {
 	@IBOutlet private weak var textField: UITextField!
 	@IBOutlet private weak var label: UILabel!
 	@IBOutlet private weak var image: UIImageView!
 	@IBOutlet private weak var progressView: UIProgressView!
 	@IBOutlet private weak var statusLabel: UILabel!
+	@IBOutlet private weak var pasteButton: UIButton!
 
 	var currentVideo: XCDYouTubeVideo?
 	var currentDownload: (video: Alamofire.Request?, audio: Alamofire.Request?)
@@ -18,31 +45,43 @@ class DownloadVideoVC: UIViewController, UITextFieldDelegate {
 		return false
 	}
 
+	override func viewDidAppear(animated: Bool) {
+		super.viewDidAppear(animated)
+
+		if let pasteboardString = UIPasteboard.generalPasteboard().string where YouTubeHelper().identifierFromYouTubeURL(pasteboardString) != nil {
+			UIView.animateWithDuration(0.5, delay: 0.0, options: [.Repeat, .Autoreverse, .AllowUserInteraction], animations: {
+				self.pasteButton.alpha = 0.25
+				}, completion: nil)
+		}
+	}
+
 	override func preferredStatusBarStyle() -> UIStatusBarStyle {
 		return .LightContent
 	}
 
 	@IBAction func loadVideoInfos() {
-		guard let
-			text = textField.text,
-			regex = try? NSRegularExpression(pattern: "(?:youtube\\.com/(?:[^/]+/.+/|(?:v|e(?:mbed)?)/|.*[?&]v=)|youtu\\.be/)([^\"&?/ ]{11}).*", options: [.CaseInsensitive])
-			else { return }
+		guard let text = textField.text else { return }
 
-		if let range = regex.firstMatchInString(text, options: [], range: (text as NSString).rangeOfString(text))?.rangeAtIndex(1) {
-			XCDYouTubeClient.defaultClient().getVideoWithIdentifier((text as NSString).substringWithRange(range)) { video, error in
-				self.currentVideo = video
-				self.label.text = video?.title
-				guard let thumbnailURL = video?.largeThumbnailURL ?? video?.mediumThumbnailURL ?? video?.smallThumbnailURL else { return }
+		YouTubeHelper().videoWithURL(text) { video, error in
+			self.currentVideo = video
+			self.label.text = video?.title
 
-				Alamofire.request(.GET, thumbnailURL).responseData { response in
-					guard let data = response.data else { return }
-
-					dispatch_async(dispatch_get_main_queue()) {
-						self.image.image = UIImage(data: data)
-					}
+			guard let thumbnailURL = video?.largeThumbnailURL ?? video?.mediumThumbnailURL ?? video?.smallThumbnailURL else { return }
+			Alamofire.request(.GET, thumbnailURL).responseData { response in
+				guard let data = response.data else { return }
+				dispatch_main {
+					self.image.image = UIImage(data: data)
 				}
 			}
 		}
+	}
+
+	@IBAction func paste() {
+		UIView.animateWithDuration(0.5, delay: 0.0, options: [.BeginFromCurrentState], animations: {
+			self.pasteButton.alpha = 1.0
+			}, completion: nil)
+		textField.text = UIPasteboard.generalPasteboard().string
+		loadVideoInfos()
 	}
 
 	@IBAction func downloadCurrentVideo() {
@@ -51,18 +90,38 @@ class DownloadVideoVC: UIViewController, UITextFieldDelegate {
 			streamURLs = currentVideo.streamURLs as? [UInt: NSURL]
 			else { return }
 
-		let alertController = UIAlertController(title: "Quelle qualité souhaitez vous charger ?", message: "Qualités disponibles :", preferredStyle: .ActionSheet)
-		streamURLs.keys
-			.flatMap { YouTubeVideoQuality(rawValue: $0) }
-			.sort { $0.stringValue > $1.stringValue }
-			.forEach { quality in
-			alertController.addAction(UIAlertAction(title: quality.stringValue, style: .Default, handler: { _ in
-				self.loadVideo(currentVideo, withQuality: quality)
-			}))
-		}
-		alertController.addAction(UIAlertAction(title: "Annuler", style: .Cancel, handler: nil))
-		presentViewController(alertController, animated: true, completion: nil)
+		var fileSizes = [UInt: Int64]()
+		let supportedFileStreams = streamURLs.filter { YouTubeVideoQuality(rawValue: $0.0) != nil || YouTubeAudioQuality(rawValue: $0.0) != nil }
 
+		supportedFileStreams.forEach { key, value in
+			let download = Alamofire.download(.GET, value, destination: Request.suggestedDownloadDestination(directory: .CachesDirectory, domain: .UserDomainMask))
+
+			download.progress { _, _, expectedBytes in
+				fileSizes[key] = expectedBytes
+				download.cancel()
+				dispatch_main {
+					guard supportedFileStreams.count == fileSizes.count else { return }
+
+					let alertController = UIAlertController(title: "Quelle qualité souhaitez vous charger ?", message: "Qualités disponibles :", preferredStyle: .ActionSheet)
+					streamURLs.keys
+						.flatMap { YouTubeVideoQuality(rawValue: $0) }
+						.sort(>)
+						.forEach { quality in
+							let filesize: Double
+							if quality.isDash {
+								filesize = Double(fileSizes[quality.rawValue]!) + Double(fileSizes[YouTubeAudioQuality.Medium128kbps.rawValue]!)
+							} else {
+								filesize = Double(fileSizes[quality.rawValue]!)
+							}
+							alertController.addAction(UIAlertAction(title: quality.stringValue + " — " + String(format: "%1.1f", filesize / pow(10.0, 6) ) + "Mb", style: .Default, handler: { _ in
+								self.loadVideo(currentVideo, withQuality: quality)
+							}))
+					}
+					alertController.addAction(UIAlertAction(title: "Annuler", style: .Cancel, handler: nil))
+					self.presentViewController(alertController, animated: true, completion: nil)
+				}
+			}
+		}
 	}
 
 

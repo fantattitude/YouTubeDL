@@ -24,7 +24,7 @@ class DownloadManager {
 	func addVideo(videoUrl: NSURL, audioUrl: NSURL? = nil, name: String, identifier: String, progress: (Int64, Int64, Int64) -> Void, completion: (Bool) -> Void) {
 		let path = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0]
 
-		var currentDownload = Download(name: name, identifier: identifier, videoPath: path + "/" + identifier + ".mp4")
+		/*var currentDownload = Download(name: name, identifier: identifier, videoPath: path + "/" + identifier + ".mp4")
 
 		if let audioUrl = audioUrl {
 			currentDownload.audioPath = path + "/" + identifier + ".m4a"
@@ -43,7 +43,7 @@ class DownloadManager {
 				self.completionBlocks.removeAll()
 		}
 
-		downloads.append(currentDownload)
+		downloads.append(currentDownload)*/
 	}
 
 	func loadFromDefaults() {

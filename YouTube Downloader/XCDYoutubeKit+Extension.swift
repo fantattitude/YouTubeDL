@@ -1,3 +1,5 @@
+import Foundation
+
 enum YouTubeVideoQuality: UInt {
 	case Small144pDash = 160 // Encoded in 15 FPS.
 	case Small240p = 36
@@ -33,13 +35,13 @@ enum YouTubeVideoQuality: UInt {
 		case .HD720p:
 			return "720p"
 		case .HD720pDash:
-			return "720p"
+			return "720p (Dash)"
 		case .HD720p60Dash:
 			return "720p60"
 		case .HD1080p:
 			return "1080p"
 		case .HD1080pDash:
-			return "1080p"
+			return "1080p (Dash)"
 		case .HD1080p60Dash:
 			return "1080p60"
 		case .HD2160pDash: 
@@ -51,4 +53,26 @@ enum YouTubeVideoQuality: UInt {
 enum YouTubeAudioQuality: UInt {
 	case Medium128kbps = 140
 	case High256kbps = 141 // Available in the DASH manifest and on YouTube's content distribution servers, but not used in playback.
+}
+
+extension YouTubeVideoQuality: Comparable {
+	func compare(other: YouTubeVideoQuality) -> NSComparisonResult {
+		return self.stringValue.localizedStandardCompare(other.stringValue)
+	}
+}
+
+func <(lhs: YouTubeVideoQuality, rhs: YouTubeVideoQuality) -> Bool {
+	return lhs.compare(rhs) == .OrderedAscending
+}
+
+func <=(lhs: YouTubeVideoQuality, rhs: YouTubeVideoQuality) -> Bool {
+	return [.OrderedSame, .OrderedAscending].contains(lhs.compare(rhs))
+}
+
+func >=(lhs: YouTubeVideoQuality, rhs: YouTubeVideoQuality) -> Bool {
+	return [.OrderedSame, .OrderedDescending].contains(lhs.compare(rhs))
+}
+
+func >(lhs: YouTubeVideoQuality, rhs: YouTubeVideoQuality) -> Bool {
+	return lhs.compare(rhs) == .OrderedDescending
 }

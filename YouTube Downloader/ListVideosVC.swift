@@ -6,6 +6,7 @@ class VideoCell: UITableViewCell {
 	@IBOutlet private weak var title: UILabel!
 	@IBOutlet private weak var rightDetail: UILabel!
 	@IBOutlet private weak var progressView: UIProgressView!
+	@IBOutlet private weak var thumbImageView: UIImageView!
 }
 
 class ListVideosVC: UIViewController {
