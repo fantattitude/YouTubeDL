@@ -48,7 +48,7 @@ class DownloadVideoVC: UIViewController, UITextFieldDelegate {
 	override func viewDidAppear(animated: Bool) {
 		super.viewDidAppear(animated)
 
-		if let pasteboardString = UIPasteboard.generalPasteboard().string where YouTubeHelper().identifierFromYouTubeURL(pasteboardString) != nil {
+		if let pasteboardString = UIPasteboard.generalPasteboard().string where !pasteboardString.isEmpty && YouTubeHelper().identifierFromYouTubeURL(pasteboardString) != nil {
 			UIView.animateWithDuration(0.5, delay: 0.0, options: [.Repeat, .Autoreverse, .AllowUserInteraction], animations: {
 				self.pasteButton.alpha = 0.25
 				}, completion: nil)
@@ -60,7 +60,7 @@ class DownloadVideoVC: UIViewController, UITextFieldDelegate {
 	}
 
 	@IBAction func loadVideoInfos() {
-		guard let text = textField.text else { return }
+		guard let text = textField.text where !text.isEmpty else { return }
 
 		YouTubeHelper().videoWithURL(text) { video, error in
 			self.currentVideo = video
@@ -139,29 +139,17 @@ class DownloadVideoVC: UIViewController, UITextFieldDelegate {
 		navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Cancel, target: self, action: "stopDownload")
 		progressView.setProgress(0, animated: true)
 
+		let download = Download(name: video.title, identifier: video.identifier, videoUrl: videoURL)
+		download.thumbnail = image.image
+
 		if quality.isDash {
-			guard let audioURL = video.streamURLs[YouTubeAudioQuality.Medium128kbps.rawValue] else { return }
+			download.audioUrl = video.streamURLs[YouTubeAudioQuality.Medium128kbps.rawValue]
+		}
 
-			DownloadManager.sharedManager.addVideo(videoURL, audioUrl: audioURL, name: video.description, identifier: video.identifier, progress: { _, totalBytesRead, totalBytesExpectedToRead in
-				self.updateStatus(0, totalBytesRead: totalBytesRead, totalBytesExpectedToRead: totalBytesExpectedToRead)
-				}, completion: { success in
-					if success {
-						self.statusLabel.text = "Downloaded file successfully"
-					} else {
-						self.statusLabel.text = "Failed"
-					}
-			})
-		} else {
-			DownloadManager.sharedManager.addVideo(videoURL, name: video.description, identifier: video.identifier, progress: { _, totalBytesRead, totalBytesExpectedToRead in
-				self.updateStatus(0, totalBytesRead: totalBytesRead, totalBytesExpectedToRead: totalBytesExpectedToRead)
-				}, completion: { success in
-					if success {
-						self.statusLabel.text = "Downloaded file successfully"
-					} else {
-						self.statusLabel.text = "Failed"
-					}
-			})
-
+		DownloadManager.sharedManager.addDownload(download, progress: { progress in
+			print(progress)
+			}) { success, error in
+				print(success)
 		}
 	}
 

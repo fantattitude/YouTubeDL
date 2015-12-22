@@ -21,29 +21,59 @@ class DownloadManager {
 		completionBlocks.append(completed)
 	}
 
-	func addVideo(videoUrl: NSURL, audioUrl: NSURL? = nil, name: String, identifier: String, progress: (Int64, Int64, Int64) -> Void, completion: (Bool) -> Void) {
-		let path = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0]
+	lazy var documentsPath = {
+		return NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0]
+	}()
 
-		/*var currentDownload = Download(name: name, identifier: identifier, videoPath: path + "/" + identifier + ".mp4")
+	func addDownload(download: Download, progress: (Double) -> Void, completion: (Bool, ErrorType?) -> Void) {
+		downloads.append(download)
 
-		if let audioUrl = audioUrl {
-			currentDownload.audioPath = path + "/" + identifier + ".m4a"
-
-			Alamofire.download(.GET, audioUrl) { tempURL, response in
-				return NSURL(fileURLWithPath: currentDownload.audioPath!)
+		var bothProgress: (video: Double, audio: Double?) = (0.0, nil)
+		let bothProgressCalc: () -> Double = {
+			if let audio = bothProgress.audio {
+				return (bothProgress.video + audio) / 2.0
 			}
+			return bothProgress.video
 		}
 
-		currentDownload.request = Alamofire.download(.GET, videoUrl) { tempURL, response in
-			return NSURL(fileURLWithPath: currentDownload.videoPath)
+		download.videoRequest = Alamofire.download(.GET, download.videoUrl) { tempURL, response in
+			return self.filePathWithIdentifier(download.identifier, type: .Video)
+		}.progress { _, totalBytesRead, totalBytesExpectedToRead in
+			bothProgress.video = Double(totalBytesRead) / Double(totalBytesExpectedToRead)
+			progress(bothProgressCalc())
+		}.response { _, _, _, error in
+			guard error == nil else {
+				print(error)
+				return completion(false, error)
+			}
+			download.videoPath = self.filePathWithIdentifier(download.identifier, type: .Audio).absoluteString
+			completion(true, nil)
+		}
+
+		guard let audio = download.audioUrl else { return }
+		download.audioRequest = Alamofire.download(.GET, audio) { tempURL, response in
+			return self.filePathWithIdentifier(download.identifier, type: .Audio)
+			}.progress { _, totalBytesRead, totalBytesExpectedToRead in
+				bothProgress.audio = Double(totalBytesRead) / Double(totalBytesExpectedToRead)
+				progress(bothProgressCalc())
 			}.response { _, _, _, error in
-				guard error == nil else { return }
-				currentDownload.status = .ReadyToPlay
-				self.completionBlocks.forEach { $0(self) }
-				self.completionBlocks.removeAll()
+				guard error == nil else {
+					print(error)
+					return completion(false, error)
+				}
+				download.audioPath = self.filePathWithIdentifier(download.identifier, type: .Audio).absoluteString
+				download.status = .ReadyToPlay
+				completion(true, nil)
 		}
+	}
 
-		downloads.append(currentDownload)*/
+	enum FileType: String {
+		case Video = ".mp4"
+		case Audio = ".m4a"
+	}
+
+	func filePathWithIdentifier(identifier: String, type: FileType) -> NSURL {
+		return NSURL(fileURLWithPath: self.documentsPath + "/" + identifier + type.rawValue)
 	}
 
 	func loadFromDefaults() {

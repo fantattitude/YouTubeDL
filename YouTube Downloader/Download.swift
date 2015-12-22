@@ -9,16 +9,17 @@ class Download: Encodable {
 
 	var name: String!
 	var identifier: String!
-	var videoUrl: String!
+	var videoUrl: NSURL!
 	var videoPath: String?
-	var audioUrl: String?
+	var audioUrl: NSURL?
 	var audioPath: String?
 	var thumbnail: UIImage?
 	var status: Status!
 
-	var request: Alamofire.Request?
+	var videoRequest: Alamofire.Request?
+	var audioRequest: Alamofire.Request?
 
-	init(name: String, identifier: String, videoUrl: String, videoPath: String? = nil, audioUrl: String? = nil, audioPath: String? = nil, status: Status = .Downloading) {
+	init(name: String, identifier: String, videoUrl: NSURL, videoPath: String? = nil, audioUrl: NSURL? = nil, audioPath: String? = nil, status: Status = .Downloading) {
 		self.name = name
 		self.identifier = identifier
 		self.videoUrl = videoUrl
@@ -33,7 +34,7 @@ class Download: Encodable {
 			dic = dictionaryRepresentation,
 			name = dic["name"] as? String,
 			identifier = dic["identifier"] as? String,
-			videoUrl = dic["videoUrl"] as? String,
+			videoUrl = dic["videoUrl"] as? NSURL,
 			statusString = dic["status"] as? String,
 			status = Status(rawValue: statusString) else { return nil }
 
@@ -41,7 +42,7 @@ class Download: Encodable {
 		self.identifier = identifier
 		self.videoUrl = videoUrl
 		self.videoPath = dic["videoPath"] as? String
-		self.audioUrl = dic["audioUrl"] as? String
+		self.audioUrl = dic["audioUrl"] as? NSURL
 		self.audioPath = dic["audioPath"] as? String
 		self.status = status
 
@@ -54,11 +55,16 @@ class Download: Encodable {
 		var representation: [String: AnyObject] = [
 			"name": name,
 			"identifier": identifier,
+			"videoUrl": videoUrl,
 			"status": status.rawValue
 		]
 
 		if let videoPath = videoPath {
 			representation["videoPath"] = videoPath
+		}
+
+		if let audioUrl = audioUrl {
+			representation["audioUrl"] = audioUrl
 		}
 
 		if let audioPath = audioPath {
