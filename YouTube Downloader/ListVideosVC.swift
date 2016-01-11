@@ -149,6 +149,8 @@ extension ListVideosVC: UITableViewDelegate {
 		try! AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback)
 		let movieVC = AVPlayerViewController()
 		movieVC.player = player
-		self.presentViewController(movieVC, animated: true, completion: nil)
+		self.presentViewController(movieVC, animated: true) { _ in
+			movieVC.player?.play()
+		}
 	}
 }
