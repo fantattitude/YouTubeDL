@@ -25,27 +25,27 @@ enum YouTubeVideoQuality: UInt {
 	var stringValue: String {
 		switch (self) {
 		case .Small144pDash:
-			return "144p"
+			return "144p (Dash)"
 		case .Small240p:
 			return "240p"
 		case .Medium360p:
 			return "360p"
 		case .Medium480pDash:
-			return "480p"
+			return "480p (Dash)"
 		case .HD720p:
 			return "720p"
 		case .HD720pDash:
 			return "720p (Dash)"
 		case .HD720p60Dash:
-			return "720p60"
+			return "720p60 (Dash)"
 		case .HD1080p:
 			return "1080p"
 		case .HD1080pDash:
 			return "1080p (Dash)"
 		case .HD1080p60Dash:
-			return "1080p60"
+			return "1080p60 (Dash)"
 		case .HD2160pDash: 
-			return "2160p"
+			return "2160p (Dash)"
 		}
 	}
 }
