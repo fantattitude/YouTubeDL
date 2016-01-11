@@ -22,17 +22,23 @@ class ListVideosVC: UIViewController {
 		}
 	}
 	var player: AVPlayer?
-	var files = [String]()
+	var downloads = [Download]()
 
 	override func preferredStatusBarStyle() -> UIStatusBarStyle {
 		return .LightContent
 	}
 
 	func refreshData() {
-		let path = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0]
+//		let path = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0]
+//
+//		guard let files = try? NSFileManager.defaultManager().contentsOfDirectoryAtPath(path) else { return }
+//		self.files = files.map { path + "/" + $0 }.filter { ($0 as NSString).pathExtension != "m4a" }
 
-		guard let files = try? NSFileManager.defaultManager().contentsOfDirectoryAtPath(path) else { return }
-		self.files = files.map { path + "/" + $0 }.filter { ($0 as NSString).pathExtension != "m4a" }
+		if DownloadManager.sharedManager.downloads.isEmpty {
+			DownloadManager.sharedManager.loadFromDefaults()
+		}
+
+		downloads = DownloadManager.sharedManager.downloads
 
 		tableView.reloadData()
 		refreshControl.endRefreshing()
@@ -73,7 +79,7 @@ extension ListVideosVC: UITableViewDataSource {
 //		} else {
 //			return DownloadManager.sharedManager.readyDownload.count
 //		}
-		return files.count
+		return downloads.count
 	}
 
 	func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -86,22 +92,29 @@ extension ListVideosVC: UITableViewDataSource {
 //			= DownloadManager.sharedManager.downloads
 
 
-		let video = files[indexPath.row]
+		let download = downloads[indexPath.row]
 
-		let videoURL = NSURL(fileURLWithPath: video)
+		let videoURL = NSURL(fileURLWithPath: download.videoPath!)
 		let videoAsset = AVURLAsset(URL: videoURL)
 		let videoDuration: Int32
 
-		if NSFileManager().fileExistsAtPath((video as NSString).stringByDeletingPathExtension + ".m4a") {
+		if download.audioPath != nil {
 			videoDuration = Int32((videoAsset.duration.value - (videoAsset.duration.value / 2))) / videoAsset.duration.timescale
 		} else {
 			videoDuration = Int32(videoAsset.duration.value) / videoAsset.duration.timescale
 		}
 
-		cell.title.text = video
+		cell.title.text = download.name
 		cell.rightDetail.text = ListVideosVC.dateComponentsFormatter.stringFromTimeInterval(Double(videoDuration))
 
 		return cell
+	}
+
+	func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+		guard editingStyle == .Delete else { return }
+
+		downloads.removeAtIndex(indexPath.row)
+		tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
 	}
 
 //	func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
@@ -118,21 +131,19 @@ extension ListVideosVC: UITableViewDataSource {
 
 extension ListVideosVC: UITableViewDelegate {
 	func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-		let video = files[indexPath.row]
+		let download = downloads[indexPath.row]
 
-		if NSFileManager().fileExistsAtPath((video as NSString).stringByDeletingPathExtension + ".m4a") {
-			let sound = (video as NSString).stringByDeletingPathExtension + ".m4a"
-
+		if let soundPath = download.audioPath {
 			let composition = AVMutableComposition()
 
-			let audioURL = NSURL(fileURLWithPath: sound)
+			let audioURL = NSURL(fileURLWithPath: soundPath)
 			let audioAsset = AVURLAsset(URL: audioURL)
 			let audioTimeRange = CMTimeRangeMake(kCMTimeZero, CMTimeMake(audioAsset.duration.value - (audioAsset.duration.value / 2), audioAsset.duration.timescale))
 
 			let bCompositionAudioTrack = composition.addMutableTrackWithMediaType(AVMediaTypeAudio, preferredTrackID: kCMPersistentTrackID_Invalid)
 			try! bCompositionAudioTrack.insertTimeRange(audioTimeRange, ofTrack: audioAsset.tracksWithMediaType(AVMediaTypeAudio)[0], atTime: kCMTimeZero)
 
-			let videoURL = NSURL(fileURLWithPath: video)
+			let videoURL = NSURL(fileURLWithPath: download.videoPath!)
 			let videoAsset = AVURLAsset(URL: videoURL)
 			let videoTimeRange = audioTimeRange
 
@@ -143,7 +154,7 @@ extension ListVideosVC: UITableViewDelegate {
 			let playerItem = AVPlayerItem(asset: composition)
 			player = AVPlayer(playerItem: playerItem)
 		} else {
-			player = AVPlayer(URL: NSURL(fileURLWithPath: video))
+			player = AVPlayer(URL: NSURL(fileURLWithPath: download.videoPath!))
 		}
 
 		try! AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback)

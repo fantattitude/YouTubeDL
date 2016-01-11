@@ -139,17 +139,23 @@ class DownloadVideoVC: UIViewController, UITextFieldDelegate {
 		navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Cancel, target: self, action: "stopDownload")
 		progressView.setProgress(0, animated: true)
 
-		let download = Download(name: video.title, identifier: video.identifier, videoUrl: videoURL)
+		let download = Download(name: video.title, identifier: video.identifier, videoUrl: videoURL.absoluteString)
 		download.thumbnail = image.image
 
 		if quality.isDash {
-			download.audioUrl = video.streamURLs[YouTubeAudioQuality.Medium128kbps.rawValue]
+			download.audioUrl = video.streamURLs[YouTubeAudioQuality.Medium128kbps.rawValue]?.absoluteString
 		}
 
 		DownloadManager.sharedManager.addDownload(download, progress: { progress in
-			print(progress)
+			dispatch_main {
+				self.progressView.progress = Float(progress)
+			}
 			}) { success, error in
-				print(success)
+				guard error == nil && success else {
+					print(error)
+					return
+				}
+				self.progressView.progress = 1.0
 		}
 	}
 

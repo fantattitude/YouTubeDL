@@ -36,6 +36,14 @@ class DownloadManager {
 			return bothProgress.video
 		}
 
+		var finished: (video: Bool, audio: Bool?) = (false, nil)
+		let finishedBlock: () -> Bool = {
+			if let audioFinished = finished.audio {
+				return finished.video && audioFinished
+			}
+			return finished.video
+		}
+
 		download.videoRequest = Alamofire.download(.GET, download.videoUrl) { tempURL, response in
 			return self.filePathWithIdentifier(download.identifier, type: .Video)
 		}.progress { _, totalBytesRead, totalBytesExpectedToRead in
@@ -46,8 +54,15 @@ class DownloadManager {
 				print(error)
 				return completion(false, error)
 			}
+
 			download.videoPath = self.filePathWithIdentifier(download.identifier, type: .Audio).absoluteString
-			completion(true, nil)
+
+			finished.video = true
+			if finishedBlock() {
+				download.status = .ReadyToPlay
+				self.saveToDefaults()
+				completion(true, nil)
+			}
 		}
 
 		guard let audio = download.audioUrl else { return }
@@ -61,9 +76,15 @@ class DownloadManager {
 					print(error)
 					return completion(false, error)
 				}
+
 				download.audioPath = self.filePathWithIdentifier(download.identifier, type: .Audio).absoluteString
-				download.status = .ReadyToPlay
-				completion(true, nil)
+
+				finished.audio = true
+				if finishedBlock() {
+					download.status = .ReadyToPlay
+					self.saveToDefaults()
+					completion(true, nil)
+				}
 		}
 	}
 
