@@ -6,10 +6,10 @@
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
-        <!--First-->
+        <!--YouTube ⬇-->
         <scene sceneID="hNz-n2-bh7">
             <objects>
-                <viewController id="9pv-A4-QxB" customClass="ListVideosVC" customModule="YouTube_Downloader" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="YouTube ⬇" id="9pv-A4-QxB" customClass="ListVideosVC" customModule="YouTube_Downloader" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Ia1-K6-d13"/>
                         <viewControllerLayoutGuide type="bottom" id="4ug-Mw-9AY"/>
@@ -29,16 +29,16 @@
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="59"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <view contentMode="scaleToFill" horizontalHuggingPriority="251" horizontalCompressionResistancePriority="751" translatesAutoresizingMaskIntoConstraints="NO" id="9hs-H9-iXv">
+                                                <view contentMode="scaleToFill" horizontalCompressionResistancePriority="751" translatesAutoresizingMaskIntoConstraints="NO" id="9hs-H9-iXv">
                                                     <rect key="frame" x="541" y="11" width="44" height="38"/>
                                                     <subviews>
-                                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" horizontalCompressionResistancePriority="752" text="Durée" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G0f-O3-ngR">
+                                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" horizontalHuggingPriority="249" text="Durée" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G0f-O3-ngR">
                                                             <rect key="frame" x="0.0" y="0.0" width="44" height="20"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                             <color key="textColor" red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <view clipsSubviews="YES" contentMode="scaleToFill" horizontalCompressionResistancePriority="751" translatesAutoresizingMaskIntoConstraints="NO" id="gcY-GP-3ry">
+                                                        <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gcY-GP-3ry">
                                                             <rect key="frame" x="0.0" y="22" width="44" height="16"/>
                                                             <subviews>
                                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Qualité" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="To5-96-C64">
@@ -73,7 +73,7 @@
                                                         <constraint firstItem="G0f-O3-ngR" firstAttribute="leading" secondItem="9hs-H9-iXv" secondAttribute="leading" id="uHj-U0-ajY"/>
                                                     </constraints>
                                                 </view>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Nom vidéo" lineBreakMode="middleTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h7z-an-5Ad">
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" horizontalCompressionResistancePriority="749" text="Nom vidéo" lineBreakMode="middleTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h7z-an-5Ad">
                                                     <rect key="frame" x="114" y="20" width="78" height="20"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -98,13 +98,14 @@
                                                 <constraint firstItem="h7z-an-5Ad" firstAttribute="leading" secondItem="2MW-hY-6tC" secondAttribute="trailing" constant="8" id="VcS-xg-4bE"/>
                                                 <constraint firstItem="2MW-hY-6tC" firstAttribute="leading" secondItem="rnN-ig-XgL" secondAttribute="leading" id="a2K-fC-gWg"/>
                                                 <constraint firstAttribute="bottom" secondItem="2MW-hY-6tC" secondAttribute="bottom" id="dhC-nY-0nJ"/>
-                                                <constraint firstItem="9hs-H9-iXv" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="h7z-an-5Ad" secondAttribute="trailing" constant="8" id="eeS-sh-Cfm"/>
+                                                <constraint firstItem="9hs-H9-iXv" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="h7z-an-5Ad" secondAttribute="trailing" constant="5" id="eeS-sh-Cfm"/>
                                                 <constraint firstAttribute="trailing" secondItem="9hs-H9-iXv" secondAttribute="trailing" constant="15" id="gBs-HK-FXF"/>
                                                 <constraint firstAttribute="trailing" secondItem="3bK-EG-2GF" secondAttribute="trailing" id="qcz-PY-jW2"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="progressView" destination="3bK-EG-2GF" id="2uf-l9-hJs"/>
+                                            <outlet property="qualityLabel" destination="To5-96-C64" id="UTa-ij-j5U"/>
                                             <outlet property="rightDetail" destination="G0f-O3-ngR" id="mc1-CS-WG2"/>
                                             <outlet property="thumbImageView" destination="2MW-hY-6tC" id="rnw-yN-Foc"/>
                                             <outlet property="title" destination="h7z-an-5Ad" id="x3o-D8-CdR"/>

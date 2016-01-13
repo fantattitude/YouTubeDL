@@ -28,6 +28,7 @@ final class Download {
 	init(name: String, identifier: String, quality: YouTubeVideoQuality!, videoUrl: String, videoPath: String? = nil, audioUrl: String? = nil, audioPath: String? = nil, status: Status = .Downloading) {
 		self.name = name
 		self.identifier = identifier
+		self.quality = quality
 		self.videoUrl = videoUrl
 		self.videoPath = videoPath
 		self.audioUrl = audioUrl

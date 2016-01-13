@@ -2,13 +2,6 @@ import UIKit
 import AVFoundation
 import AVKit
 
-class VideoCell: UITableViewCell {
-	@IBOutlet private weak var title: UILabel!
-	@IBOutlet private weak var rightDetail: UILabel!
-	@IBOutlet private weak var progressView: UIProgressView!
-	@IBOutlet private weak var thumbImageView: UIImageView!
-}
-
 class ListVideosVC: UIViewController {
 	var refreshControl: UIRefreshControl!
 
@@ -16,11 +9,12 @@ class ListVideosVC: UIViewController {
 		didSet {
 			refreshControl = UIRefreshControl()
 			refreshControl.addTarget(self, action: "refreshData", forControlEvents: .ValueChanged)
-			tableView.addSubview(refreshControl)
+			tableView.insertSubview(refreshControl, atIndex: 0)
 		}
 	}
 	var player: AVPlayer?
 	var downloads = [Download]()
+	let notificationManager = NotificationManager()
 
 	override func preferredStatusBarStyle() -> UIStatusBarStyle {
 		return .LightContent
@@ -38,6 +32,8 @@ class ListVideosVC: UIViewController {
 
 		downloads = DownloadManager.sharedManager.downloads
 
+		navigationItem.title = "YouTube ⬇\u{0000FE0E}"
+
 		tableView.reloadData()
 		refreshControl.endRefreshing()
 	}
@@ -53,6 +49,7 @@ class ListVideosVC: UIViewController {
 		super.viewDidLoad()
 
 		refreshData()
+		notificationManager.registerObserver(AVPlayerItemDidPlayToEndTimeNotification, block: videoDidFinishPlaying)
 	}
 
 //	func deleteAll() {
@@ -87,6 +84,7 @@ extension ListVideosVC: UITableViewDataSource {
 
 		cell.title.text = download.name
 		cell.rightDetail.text = download.videoLength
+		cell.qualityLabel.text = download.quality.stringValue
 		cell.thumbImageView.image = download.thumbnail
 
 		return cell
@@ -112,5 +110,11 @@ extension ListVideosVC: UITableViewDelegate {
 		self.presentViewController(movieVC, animated: true) { _ in
 			movieVC.player?.play()
 		}
+	}
+}
+
+extension ListVideosVC {
+	func videoDidFinishPlaying(notification: NSNotification!) {
+		dismissViewController()
 	}
 }
