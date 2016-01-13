@@ -18,7 +18,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="h0s-ZH-3Qs">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="60" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="h0s-ZH-3Qs">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
@@ -29,14 +29,52 @@
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="59"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" horizontalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="Durée" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G0f-O3-ngR">
-                                                    <rect key="frame" x="541" y="20" width="44" height="20"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                                    <color key="textColor" red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Nom vidéo" textAlignment="natural" lineBreakMode="middleTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h7z-an-5Ad">
-                                                    <rect key="frame" x="121" y="20" width="78" height="20"/>
+                                                <view contentMode="scaleToFill" horizontalHuggingPriority="251" horizontalCompressionResistancePriority="751" translatesAutoresizingMaskIntoConstraints="NO" id="9hs-H9-iXv">
+                                                    <rect key="frame" x="541" y="11" width="44" height="38"/>
+                                                    <subviews>
+                                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" horizontalCompressionResistancePriority="752" text="Durée" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G0f-O3-ngR">
+                                                            <rect key="frame" x="0.0" y="0.0" width="44" height="20"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                            <color key="textColor" red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <view clipsSubviews="YES" contentMode="scaleToFill" horizontalCompressionResistancePriority="751" translatesAutoresizingMaskIntoConstraints="NO" id="gcY-GP-3ry">
+                                                            <rect key="frame" x="0.0" y="22" width="44" height="16"/>
+                                                            <subviews>
+                                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Qualité" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="To5-96-C64">
+                                                                    <rect key="frame" x="2" y="2" width="40" height="12"/>
+                                                                    <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                            </subviews>
+                                                            <color key="backgroundColor" red="0.75686274509999996" green="0.75686274509999996" blue="0.75686274509999996" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <constraints>
+                                                                <constraint firstItem="To5-96-C64" firstAttribute="leading" secondItem="gcY-GP-3ry" secondAttribute="leading" constant="2" id="KRw-eF-vje"/>
+                                                                <constraint firstItem="To5-96-C64" firstAttribute="top" secondItem="gcY-GP-3ry" secondAttribute="top" constant="2" id="Zcu-Hp-AFv"/>
+                                                                <constraint firstAttribute="trailing" secondItem="To5-96-C64" secondAttribute="trailing" constant="2" id="knc-m0-Wk5"/>
+                                                                <constraint firstAttribute="bottom" secondItem="To5-96-C64" secondAttribute="bottom" constant="2" id="oxu-Uu-vTL"/>
+                                                            </constraints>
+                                                            <userDefinedRuntimeAttributes>
+                                                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                                    <integer key="value" value="4"/>
+                                                                </userDefinedRuntimeAttribute>
+                                                            </userDefinedRuntimeAttributes>
+                                                        </view>
+                                                    </subviews>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="trailing" secondItem="G0f-O3-ngR" secondAttribute="trailing" id="63g-Z0-CMo"/>
+                                                        <constraint firstAttribute="trailing" secondItem="gcY-GP-3ry" secondAttribute="trailing" id="BGA-Nr-yt2"/>
+                                                        <constraint firstItem="G0f-O3-ngR" firstAttribute="top" secondItem="9hs-H9-iXv" secondAttribute="top" id="IcE-EB-CET"/>
+                                                        <constraint firstAttribute="bottom" secondItem="gcY-GP-3ry" secondAttribute="bottom" id="UmU-KL-RYl"/>
+                                                        <constraint firstItem="gcY-GP-3ry" firstAttribute="top" secondItem="G0f-O3-ngR" secondAttribute="bottom" constant="2" id="YaE-ay-mon"/>
+                                                        <constraint firstItem="gcY-GP-3ry" firstAttribute="leading" secondItem="9hs-H9-iXv" secondAttribute="leading" id="mdR-gZ-VaO"/>
+                                                        <constraint firstItem="G0f-O3-ngR" firstAttribute="leading" secondItem="9hs-H9-iXv" secondAttribute="leading" id="uHj-U0-ajY"/>
+                                                    </constraints>
+                                                </view>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Nom vidéo" lineBreakMode="middleTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h7z-an-5Ad">
+                                                    <rect key="frame" x="114" y="20" width="78" height="20"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -55,13 +93,13 @@
                                                 <constraint firstAttribute="bottom" secondItem="3bK-EG-2GF" secondAttribute="bottom" id="4RM-i2-uvF"/>
                                                 <constraint firstItem="3bK-EG-2GF" firstAttribute="leading" secondItem="rnN-ig-XgL" secondAttribute="leading" id="5Nm-k6-MzX"/>
                                                 <constraint firstItem="h7z-an-5Ad" firstAttribute="centerY" secondItem="rnN-ig-XgL" secondAttribute="centerY" id="9UF-P0-saM"/>
-                                                <constraint firstItem="G0f-O3-ngR" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="h7z-an-5Ad" secondAttribute="trailing" constant="20" id="B5T-qi-39S"/>
-                                                <constraint firstItem="G0f-O3-ngR" firstAttribute="centerY" secondItem="rnN-ig-XgL" secondAttribute="centerY" id="KLK-Ob-arY"/>
+                                                <constraint firstItem="9hs-H9-iXv" firstAttribute="centerY" secondItem="rnN-ig-XgL" secondAttribute="centerY" id="MTV-eF-Yr3"/>
                                                 <constraint firstItem="2MW-hY-6tC" firstAttribute="top" secondItem="rnN-ig-XgL" secondAttribute="top" id="OWR-VY-6rw"/>
-                                                <constraint firstItem="h7z-an-5Ad" firstAttribute="leading" secondItem="2MW-hY-6tC" secondAttribute="trailing" constant="15" id="VcS-xg-4bE"/>
+                                                <constraint firstItem="h7z-an-5Ad" firstAttribute="leading" secondItem="2MW-hY-6tC" secondAttribute="trailing" constant="8" id="VcS-xg-4bE"/>
                                                 <constraint firstItem="2MW-hY-6tC" firstAttribute="leading" secondItem="rnN-ig-XgL" secondAttribute="leading" id="a2K-fC-gWg"/>
                                                 <constraint firstAttribute="bottom" secondItem="2MW-hY-6tC" secondAttribute="bottom" id="dhC-nY-0nJ"/>
-                                                <constraint firstAttribute="trailing" secondItem="G0f-O3-ngR" secondAttribute="trailing" constant="15" id="oRT-Pr-yCr"/>
+                                                <constraint firstItem="9hs-H9-iXv" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="h7z-an-5Ad" secondAttribute="trailing" constant="8" id="eeS-sh-Cfm"/>
+                                                <constraint firstAttribute="trailing" secondItem="9hs-H9-iXv" secondAttribute="trailing" constant="15" id="gBs-HK-FXF"/>
                                                 <constraint firstAttribute="trailing" secondItem="3bK-EG-2GF" secondAttribute="trailing" id="qcz-PY-jW2"/>
                                             </constraints>
                                         </tableViewCellContentView>

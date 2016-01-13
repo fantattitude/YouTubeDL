@@ -139,7 +139,7 @@ class DownloadVideoVC: UIViewController, UITextFieldDelegate {
 		navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Cancel, target: self, action: "stopDownload")
 		progressView.setProgress(0, animated: true)
 
-		let download = Download(name: video.title, identifier: video.identifier, videoUrl: videoURL.absoluteString)
+		let download = Download(name: video.title, identifier: video.identifier, quality: quality, videoUrl: videoURL.absoluteString)
 		download.thumbnail = image.image
 
 		if quality.isDash {
@@ -156,6 +156,7 @@ class DownloadVideoVC: UIViewController, UITextFieldDelegate {
 					return
 				}
 				self.progressView.progress = 1.0
+				self.dismissViewController()
 		}
 	}
 

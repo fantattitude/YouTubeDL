@@ -25,6 +25,22 @@ class DownloadManager {
 		return NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0]
 	}()
 
+
+	private func deleteFileAtPathIfNecessary(url: NSURL) {
+		guard let path = url.path else { return }
+		deleteFileAtPathIfNecessary(path)
+	}
+
+	private func deleteFileAtPathIfNecessary(path: String) {
+		do {
+			if NSFileManager.defaultManager().fileExistsAtPath(path) {
+				try NSFileManager.defaultManager().removeItemAtPath(path)
+			}
+		} catch {
+			print(error)
+		}
+	}
+
 	func addDownload(download: Download, progress: (Double) -> Void, completion: (Bool, ErrorType?) -> Void) {
 		downloads.append(download)
 
@@ -45,7 +61,9 @@ class DownloadManager {
 		}
 
 		download.videoRequest = Alamofire.download(.GET, download.videoUrl) { tempURL, response in
-			return self.filePathWithIdentifier(download.identifier, type: .Video)
+			let path = self.filePathWithIdentifier(download.identifier, type: .Video)
+			self.deleteFileAtPathIfNecessary(path)
+			return path
 		}.progress { _, totalBytesRead, totalBytesExpectedToRead in
 			bothProgress.video = Double(totalBytesRead) / Double(totalBytesExpectedToRead)
 			progress(bothProgressCalc())
@@ -55,7 +73,12 @@ class DownloadManager {
 				return completion(false, error)
 			}
 
-			download.videoPath = self.filePathWithIdentifier(download.identifier, type: .Audio).absoluteString
+			do {
+				try self.filePathWithIdentifier(download.identifier, type: .Video).setResourceValue(true, forKey: NSURLIsExcludedFromBackupKey)
+			} catch {
+				print(error)
+			}
+			download.videoPath = self.fileNameWithIdentifier(download.identifier, type: .Video)
 
 			finished.video = true
 			if finishedBlock() {
@@ -67,7 +90,9 @@ class DownloadManager {
 
 		guard let audio = download.audioUrl else { return }
 		download.audioRequest = Alamofire.download(.GET, audio) { tempURL, response in
-			return self.filePathWithIdentifier(download.identifier, type: .Audio)
+			let path = self.filePathWithIdentifier(download.identifier, type: .Audio)
+			self.deleteFileAtPathIfNecessary(path)
+			return path
 			}.progress { _, totalBytesRead, totalBytesExpectedToRead in
 				bothProgress.audio = Double(totalBytesRead) / Double(totalBytesExpectedToRead)
 				progress(bothProgressCalc())
@@ -77,7 +102,12 @@ class DownloadManager {
 					return completion(false, error)
 				}
 
-				download.audioPath = self.filePathWithIdentifier(download.identifier, type: .Audio).absoluteString
+				do {
+					try self.filePathWithIdentifier(download.identifier, type: .Audio).setResourceValue(true, forKey: NSURLIsExcludedFromBackupKey)
+				} catch {
+					print(error)
+				}
+				download.audioPath = self.fileNameWithIdentifier(download.identifier, type: .Audio)
 
 				finished.audio = true
 				if finishedBlock() {
@@ -93,8 +123,13 @@ class DownloadManager {
 		case Audio = ".m4a"
 	}
 
+
+	func fileNameWithIdentifier(identifier: String, type: FileType) -> String {
+		return identifier + type.rawValue
+	}
+
 	func filePathWithIdentifier(identifier: String, type: FileType) -> NSURL {
-		return NSURL(fileURLWithPath: self.documentsPath + "/" + identifier + type.rawValue)
+		return NSURL(fileURLWithPath: documentsPath + "/" + fileNameWithIdentifier(identifier, type: type))
 	}
 
 	func loadFromDefaults() {
