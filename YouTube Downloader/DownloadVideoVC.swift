@@ -136,9 +136,6 @@ class DownloadVideoVC: UIViewController, UITextFieldDelegate {
 	private func loadVideo(video: XCDYouTubeVideo, withQuality quality: YouTubeVideoQuality) {
 		guard let videoURL = video.streamURLs[quality.rawValue] else { return }
 
-		navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Cancel, target: self, action: "stopDownload")
-		progressView.setProgress(0, animated: true)
-
 		let download = Download(name: video.title, identifier: video.identifier, quality: quality, videoUrl: videoURL.absoluteString)
 		download.thumbnail = image.image
 

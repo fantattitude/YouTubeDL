@@ -57,7 +57,7 @@ enum YouTubeAudioQuality: UInt {
 
 extension YouTubeVideoQuality: Comparable {
 	func compare(other: YouTubeVideoQuality) -> NSComparisonResult {
-		return self.stringValue.localizedStandardCompare(other.stringValue)
+		return stringValue.localizedStandardCompare(other.stringValue)
 	}
 }
 
