@@ -146,18 +146,8 @@ class DownloadVideoVC: UIViewController, UITextFieldDelegate {
 			download.audioUrl = video.streamURLs[YouTubeAudioQuality.Medium128kbps.rawValue]?.absoluteString
 		}
 
-		DownloadManager.sharedManager.addDownload(download, progress: { progress in
-			dispatch_main {
-				self.progressView.progress = Float(progress)
-			}
-			}) { success, error in
-				guard error == nil && success else {
-					print(error)
-					return
-				}
-				self.progressView.progress = 1.0
-				self.dismissViewController()
-		}
+		DownloadManager.sharedManager.addDownload(download)
+		dismissViewController()
 	}
 
 	private func updateStatus(bytesRead: Int64, totalBytesRead: Int64, totalBytesExpectedToRead: Int64) {

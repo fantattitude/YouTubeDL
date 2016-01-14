@@ -41,7 +41,7 @@ class DownloadManager {
 		}
 	}
 
-	func addDownload(download: Download, progress: (Double) -> Void, completion: (Bool, ErrorType?) -> Void) {
+	func addDownload(download: Download, progress: ((Double) -> Void)? = nil, completion: ((Bool, ErrorType?) -> Void)? = nil) {
 		downloads.append(download)
 
 		var bothProgress: (video: Double, audio: Double?) = (0.0, nil)
@@ -66,11 +66,12 @@ class DownloadManager {
 			return path
 		}.progress { _, totalBytesRead, totalBytesExpectedToRead in
 			bothProgress.video = Double(totalBytesRead) / Double(totalBytesExpectedToRead)
-			progress(bothProgressCalc())
+			progress?(bothProgressCalc())
 		}.response { _, _, _, error in
 			guard error == nil else {
 				print(error)
-				return completion(false, error)
+				completion?(false, error)
+				return
 			}
 
 			do {
@@ -84,7 +85,7 @@ class DownloadManager {
 			if finishedBlock() {
 				download.status = .ReadyToPlay
 				self.saveToDefaults()
-				completion(true, nil)
+				completion?(true, nil)
 			}
 		}
 
@@ -95,11 +96,12 @@ class DownloadManager {
 			return path
 			}.progress { _, totalBytesRead, totalBytesExpectedToRead in
 				bothProgress.audio = Double(totalBytesRead) / Double(totalBytesExpectedToRead)
-				progress(bothProgressCalc())
+				progress?(bothProgressCalc())
 			}.response { _, _, _, error in
 				guard error == nil else {
 					print(error)
-					return completion(false, error)
+					completion?(false, error)
+					return
 				}
 
 				do {
@@ -113,7 +115,7 @@ class DownloadManager {
 				if finishedBlock() {
 					download.status = .ReadyToPlay
 					self.saveToDefaults()
-					completion(true, nil)
+					completion?(true, nil)
 				}
 		}
 	}
