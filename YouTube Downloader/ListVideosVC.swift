@@ -13,7 +13,10 @@ class ListVideosVC: UIViewController {
 		}
 	}
 	var player: AVPlayer?
-	var downloads = [Download]()
+	var downloads: [[Download]] {
+		return [DownloadManager.sharedManager.downloading, DownloadManager.sharedManager.readyDownload]
+	}
+
 	let notificationManager = NotificationManager()
 
 	override func preferredStatusBarStyle() -> UIStatusBarStyle {
@@ -21,16 +24,9 @@ class ListVideosVC: UIViewController {
 	}
 
 	func refreshData() {
-//		let path = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0]
-//
-//		guard let files = try? NSFileManager.defaultManager().contentsOfDirectoryAtPath(path) else { return }
-//		self.files = files.map { path + "/" + $0 }.filter { ($0 as NSString).pathExtension != "m4a" }
-
 		if DownloadManager.sharedManager.downloads.isEmpty {
 			DownloadManager.sharedManager.loadFromDefaults()
 		}
-
-		downloads = DownloadManager.sharedManager.downloads
 
 		navigationItem.title = "YouTube ⬇\u{0000FE0E}"
 
@@ -62,30 +58,18 @@ class ListVideosVC: UIViewController {
 }
 
 extension ListVideosVC: UITableViewDataSource {
-//	func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-//		return (DownloadManager.sharedManager.downloading.isEmpty ? 0 : 1) + (DownloadManager.sharedManager.readyDownload.isEmpty ? 0 : 1)
-//	}
+	func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+		return 2
+	}
 
 	func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//		if !DownloadManager.sharedManager.downloading.isEmpty && section == 0 {
-//			return DownloadManager.sharedManager.downloading.count
-//		} else if !DownloadManager.sharedManager.downloading.isEmpty && section == 1 {
-//			return DownloadManager.sharedManager.readyDownload.count
-//		} else {
-//			return DownloadManager.sharedManager.readyDownload.count
-//		}
-		return downloads.count
+		return downloads[section].count
 	}
 
 	func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
 		let cell = tableView.dequeueReusableCellWithIdentifier("VideoCell", forIndexPath: indexPath) as! VideoCell
 
-		let download = downloads[indexPath.row]
-
-		cell.title.text = download.name
-		cell.rightDetail.text = download.videoLength
-		cell.qualityLabel.text = download.quality.stringValue
-		cell.thumbImageView.image = download.thumbnail
+		cell.configureWithDownload(downloads[indexPath.section][indexPath.row])
 
 		return cell
 	}
@@ -93,21 +77,35 @@ extension ListVideosVC: UITableViewDataSource {
 	func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
 		guard editingStyle == .Delete else { return }
 
-		downloads.removeAtIndex(indexPath.row)
 		DownloadManager.sharedManager.downloads.removeAtIndex(indexPath.row)
 		DownloadManager.sharedManager.saveToDefaults()
 		tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
+	}
+
+	func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+		switch section {
+		case 0:
+			return "Downloading"
+		case 1:
+			return "Ready"
+		default:
+			return nil
+		}
 	}
 }
 
 extension ListVideosVC: UITableViewDelegate {
 	func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-		player = downloads[indexPath.row].player
+		let download = downloads[indexPath.section][indexPath.row]
+
+		guard download.status == .ReadyToPlay else { return }
+
+		player = download.player
 
 		try! AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback)
 		let movieVC = AVPlayerViewController()
 		movieVC.player = player
-		self.presentViewController(movieVC, animated: true) { _ in
+		presentViewController(movieVC, animated: true) { _ in
 			movieVC.player?.play()
 		}
 	}
