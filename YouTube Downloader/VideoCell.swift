@@ -13,5 +13,17 @@ class VideoCell: UITableViewCell {
 		rightDetail.text = download.videoLength
 		qualityLabel.text = download.quality.stringValue
 		thumbImageView.image = download.thumbnail
+
+		guard download.status == .Downloading else {
+			progressView.hidden = true
+			return
+		}
+
+		progressView.hidden = false
+		download.progress = { progress in
+			dispatch_main {
+				self.progressView.progress = Float(progress)
+			}
+		}
 	}
 }

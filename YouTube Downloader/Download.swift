@@ -20,6 +20,7 @@ final class Download {
 
 	var videoRequest: Alamofire.Request?
 	var audioRequest: Alamofire.Request?
+	var progress: ((Double) -> Void)?
 
 	lazy var documentsPath = {
 		return NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0]
@@ -71,7 +72,6 @@ final class Download {
 			let videoAsset = AVURLAsset(URL: videoURL)
 			let videoTimeRange = audioTimeRange
 
-			//Now we are creating the second AVMutableCompositionTrack containing our video and add it to our AVMutableComposition object.
 			let aCompositionVideoTrack = composition.addMutableTrackWithMediaType(AVMediaTypeVideo, preferredTrackID: kCMPersistentTrackID_Invalid)
 			try! aCompositionVideoTrack.insertTimeRange(videoTimeRange, ofTrack: videoAsset.tracksWithMediaType(AVMediaTypeVideo)[0], atTime: kCMTimeZero)
 
@@ -81,6 +81,12 @@ final class Download {
 
 		return AVPlayer(URL: NSURL(fileURLWithPath: documentsPath + "/" + videoPath))
 	}
+}
+
+extension Download: Equatable {}
+
+func ==(lhs: Download, rhs: Download) -> Bool {
+	return lhs.identifier == rhs.identifier && lhs.quality == rhs.quality
 }
 
 extension Download: CustomStringConvertible {

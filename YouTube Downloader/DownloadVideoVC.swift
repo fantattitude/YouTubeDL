@@ -2,38 +2,10 @@ import UIKit
 import XCDYouTubeKit
 import Alamofire
 
-enum YouTubeHelperError: ErrorType {
-	case RegexCreationError
-}
-
-class YouTubeHelper {
-	let youTubeURLPattern = "(?:youtube\\.com/(?:[^/]+/.+/|(?:v|e(?:mbed)?)/|.*[?&]v=)|youtu\\.be/)([^\"&?/ ]{11}).*"
-
-	func identifierFromYouTubeURL(url: String) -> String? {
-		guard let
-			regex = try? NSRegularExpression(pattern: youTubeURLPattern, options: [.CaseInsensitive]),
-			range = regex.firstMatchInString(url, options: [], range: (url as NSString).rangeOfString(url))?.rangeAtIndex(1)
-			else { return nil }
-
-		return (url as NSString).substringWithRange(range)
-	}
-
-	func videoWithURL(url: String, completion: (XCDYouTubeVideo?, ErrorType?) -> Void) {
-		guard let identifier = identifierFromYouTubeURL(url) else {
-			completion(nil, YouTubeHelperError.RegexCreationError)
-			return
-		}
-
-		XCDYouTubeClient.defaultClient().getVideoWithIdentifier(identifier, completionHandler: completion)
-	}
-}
-
 class DownloadVideoVC: UIViewController, UITextFieldDelegate {
 	@IBOutlet private weak var textField: UITextField!
 	@IBOutlet private weak var label: UILabel!
 	@IBOutlet private weak var image: UIImageView!
-	@IBOutlet private weak var progressView: UIProgressView!
-	@IBOutlet private weak var statusLabel: UILabel!
 	@IBOutlet private weak var pasteButton: UIButton!
 
 	var currentVideo: XCDYouTubeVideo?
@@ -124,15 +96,6 @@ class DownloadVideoVC: UIViewController, UITextFieldDelegate {
 		}
 	}
 
-
-	func stopDownload() {
-		currentDownload.video?.cancel()
-		currentDownload.audio?.cancel()
-		currentDownload = (nil, nil)
-
-		navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Done, target: self, action: "dismissViewController")
-	}
-
 	private func loadVideo(video: XCDYouTubeVideo, withQuality quality: YouTubeVideoQuality) {
 		guard let videoURL = video.streamURLs[quality.rawValue] else { return }
 
@@ -143,15 +106,14 @@ class DownloadVideoVC: UIViewController, UITextFieldDelegate {
 			download.audioUrl = video.streamURLs[YouTubeAudioQuality.Medium128kbps.rawValue]?.absoluteString
 		}
 
-		DownloadManager.sharedManager.addDownload(download)
-		dismissViewController()
-	}
-
-	private func updateStatus(bytesRead: Int64, totalBytesRead: Int64, totalBytesExpectedToRead: Int64) {
-		let progress = Float(totalBytesRead) / Float(totalBytesExpectedToRead)
-
-		dispatch_async(dispatch_get_main_queue()) {
-			self.progressView.setProgress(progress, animated: true)
+		do {
+			try DownloadManager.sharedManager.addDownload(download)
+			dismissViewController()
+		} catch {
+			let alertController = UIAlertController(title: String(error), message: nil, preferredStyle: .Alert)
+			alertController.addAction(UIAlertAction(title: "Ok", style: .Cancel, handler: nil))
+			presentViewController(alertController, animated: true, completion: nil)
 		}
+
 	}
 }

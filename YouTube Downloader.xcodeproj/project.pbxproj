@@ -17,6 +17,7 @@
 		8508183B1BF68944002A0731 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8508183A1BF68944002A0731 /* Assets.xcassets */; };
 		8508183E1BF68944002A0731 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8508183C1BF68944002A0731 /* LaunchScreen.storyboard */; };
 		850818501BF6B581002A0731 /* AVKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8508184F1BF6B581002A0731 /* AVKit.framework */; };
+		851C0A211C4FC06300D87F0F /* YouTube+Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 851C0A201C4FC06300D87F0F /* YouTube+Helper.swift */; };
 		8522DBD11C058C81002B98D1 /* XCDYouTubeKit.framework.dSYM in Resources */ = {isa = PBXBuildFile; fileRef = 8522DBCF1C058C81002B98D1 /* XCDYouTubeKit.framework.dSYM */; };
 		8522DBD51C058C9E002B98D1 /* Alamofire.framework.dSYM in Resources */ = {isa = PBXBuildFile; fileRef = 8522DBD31C058C9E002B98D1 /* Alamofire.framework.dSYM */; };
 		8522DBD61C05B533002B98D1 /* XCDYouTubeKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8522DBCE1C058C81002B98D1 /* XCDYouTubeKit.framework */; };
@@ -68,6 +69,7 @@
 		8508184B1BF6B49F002A0731 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		8508184D1BF6B55D002A0731 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		8508184F1BF6B581002A0731 /* AVKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVKit.framework; path = System/Library/Frameworks/AVKit.framework; sourceTree = SDKROOT; };
+		851C0A201C4FC06300D87F0F /* YouTube+Helper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "YouTube+Helper.swift"; sourceTree = "<group>"; };
 		8522DBCE1C058C81002B98D1 /* XCDYouTubeKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCDYouTubeKit.framework; path = Carthage/Build/iOS/XCDYouTubeKit.framework; sourceTree = "<group>"; };
 		8522DBCF1C058C81002B98D1 /* XCDYouTubeKit.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; name = XCDYouTubeKit.framework.dSYM; path = Carthage/Build/iOS/XCDYouTubeKit.framework.dSYM; sourceTree = "<group>"; };
 		8522DBD21C058C9E002B98D1 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = Carthage/Build/iOS/Alamofire.framework; sourceTree = "<group>"; };
@@ -119,21 +121,38 @@
 			children = (
 				8508183F1BF68944002A0731 /* Info.plist */,
 				850818311BF68944002A0731 /* AppDelegate.swift */,
-				85C9B3AB1C24D02F00C41946 /* Dispatch+Utils.swift */,
 				850106E21C072FF9007FA519 /* Download.swift */,
 				850106DE1C071A56007FA519 /* DownloadManager.swift */,
 				850818351BF68944002A0731 /* DownloadVideoVC.swift */,
 				850106E01C072F04007FA519 /* Encodable.swift */,
 				850818331BF68944002A0731 /* ListVideosVC.swift */,
+				8539E2C11C467CD70045CE7F /* VideoCell.swift */,
+				851C0A231C4FC12100D87F0F /* Resources */,
+				851C0A221C4FC0FD00D87F0F /* Utils */,
+			);
+			path = "YouTube Downloader";
+			sourceTree = "<group>";
+		};
+		851C0A221C4FC0FD00D87F0F /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				85C9B3AB1C24D02F00C41946 /* Dispatch+Utils.swift */,
 				8539E2BF1C4678EF0045CE7F /* NotificationManager.swift */,
 				85EDEA821BFAAB570020554F /* UIViewController+Utils.swift */,
-				8539E2C11C467CD70045CE7F /* VideoCell.swift */,
 				85EDEA7E1BFA9A960020554F /* XCDYoutubeKit+Extension.swift */,
+				851C0A201C4FC06300D87F0F /* YouTube+Helper.swift */,
+			);
+			name = Utils;
+			sourceTree = "<group>";
+		};
+		851C0A231C4FC12100D87F0F /* Resources */ = {
+			isa = PBXGroup;
+			children = (
 				8508183A1BF68944002A0731 /* Assets.xcassets */,
 				8508183C1BF68944002A0731 /* LaunchScreen.storyboard */,
 				850818371BF68944002A0731 /* Main.storyboard */,
 			);
-			path = "YouTube Downloader";
+			name = Resources;
 			sourceTree = "<group>";
 		};
 		858A7A1A1BFA900200989324 /* Frameworks */ = {
@@ -265,6 +284,7 @@
 				85EDEA7F1BFA9A960020554F /* XCDYoutubeKit+Extension.swift in Sources */,
 				85C9B3AC1C24D02F00C41946 /* Dispatch+Utils.swift in Sources */,
 				8539E2C01C4678EF0045CE7F /* NotificationManager.swift in Sources */,
+				851C0A211C4FC06300D87F0F /* YouTube+Helper.swift in Sources */,
 				850106E31C072FF9007FA519 /* Download.swift in Sources */,
 				850106E11C072F04007FA519 /* Encodable.swift in Sources */,
 				850106DF1C071A56007FA519 /* DownloadManager.swift in Sources */,

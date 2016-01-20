@@ -46,15 +46,15 @@ class ListVideosVC: UIViewController {
 
 		refreshData()
 		notificationManager.registerObserver(AVPlayerItemDidPlayToEndTimeNotification, block: videoDidFinishPlaying)
-	}
 
-//	func deleteAll() {
-//		let path = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0]
-//		guard let files = try? NSFileManager.defaultManager().contentsOfDirectoryAtPath(path) else { return }
-//		for file in files {
-//			try! NSFileManager.defaultManager().removeItemAtPath(path + "/" + file)
-//		}
-//	}
+		DownloadManager.sharedManager.aVideoStarted {
+			self.tableView.reloadData()
+		}
+
+		DownloadManager.sharedManager.aVideoCompleted { _ in
+			self.tableView.reloadData()
+		}
+	}
 }
 
 extension ListVideosVC: UITableViewDataSource {
@@ -76,6 +76,7 @@ extension ListVideosVC: UITableViewDataSource {
 
 	func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
 		guard editingStyle == .Delete else { return }
+
 
 		DownloadManager.sharedManager.downloads.removeAtIndex(indexPath.row)
 		DownloadManager.sharedManager.saveToDefaults()

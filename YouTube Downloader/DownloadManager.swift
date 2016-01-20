@@ -2,6 +2,10 @@ import Foundation
 import Alamofire
 
 class DownloadManager {
+	enum DownloadError: ErrorType {
+		case AlreadyExists
+	}
+
 	static let sharedManager = DownloadManager()
 	private init() {}
 
@@ -15,10 +19,14 @@ class DownloadManager {
 		return downloads.filter { $0.status == .Downloading }
 	}
 
-	var completionBlocks: [(DownloadManager) -> Void] = []
-
+	private var completionBlocks: [(DownloadManager) -> Void] = []
 	func aVideoCompleted(completed: (DownloadManager) -> Void) {
 		completionBlocks.append(completed)
+	}
+
+	private var startingBlocks: [() -> Void] = []
+	func aVideoStarted(block: () -> Void) {
+		startingBlocks.append(block)
 	}
 
 	lazy var documentsPath = {
@@ -41,8 +49,13 @@ class DownloadManager {
 		}
 	}
 
-	func addDownload(download: Download, progress: ((Double) -> Void)? = nil, completion: ((Bool, ErrorType?) -> Void)? = nil) {
+	func addDownload(download: Download, progress: ((Double) -> Void)? = nil, completion: ((Bool, ErrorType?) -> Void)? = nil) throws {
+		guard !downloads.contains(download) else {
+			throw DownloadError.AlreadyExists
+		}
 		downloads.append(download)
+
+		startingBlocks.forEach { $0() }
 
 		var bothProgress: (video: Double, audio: Double?) = (0.0, nil)
 		let bothProgressCalc: () -> Double = {
@@ -66,7 +79,9 @@ class DownloadManager {
 			return path
 		}.progress { _, totalBytesRead, totalBytesExpectedToRead in
 			bothProgress.video = Double(totalBytesRead) / Double(totalBytesExpectedToRead)
-			progress?(bothProgressCalc())
+			let progressVal = bothProgressCalc()
+			progress?(progressVal)
+			download.progress?(progressVal)
 		}.response { _, _, _, error in
 			guard error == nil else {
 				print(error)
@@ -85,6 +100,7 @@ class DownloadManager {
 			if finishedBlock() {
 				download.status = .ReadyToPlay
 				self.saveToDefaults()
+				self.completionBlocks.forEach { $0(self) }
 				completion?(true, nil)
 			}
 		}
@@ -96,7 +112,9 @@ class DownloadManager {
 			return path
 			}.progress { _, totalBytesRead, totalBytesExpectedToRead in
 				bothProgress.audio = Double(totalBytesRead) / Double(totalBytesExpectedToRead)
-				progress?(bothProgressCalc())
+				let progressVal = bothProgressCalc()
+				progress?(progressVal)
+				download.progress?(progressVal)
 			}.response { _, _, _, error in
 				guard error == nil else {
 					print(error)
@@ -115,6 +133,7 @@ class DownloadManager {
 				if finishedBlock() {
 					download.status = .ReadyToPlay
 					self.saveToDefaults()
+					self.completionBlocks.forEach { $0(self) }
 					completion?(true, nil)
 				}
 		}
