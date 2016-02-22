@@ -77,7 +77,7 @@ extension ListVideosVC: UITableViewDataSource {
 	func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
 		guard editingStyle == .Delete else { return }
 
-
+		downloads[indexPath.section][indexPath.row].deleteFiles()
 		DownloadManager.sharedManager.downloads.removeAtIndex(indexPath.row)
 		DownloadManager.sharedManager.saveToDefaults()
 		tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)

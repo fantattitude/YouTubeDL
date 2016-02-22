@@ -74,7 +74,7 @@ class DownloadManager {
 		}
 
 		download.videoRequest = Alamofire.download(.GET, download.videoUrl) { tempURL, response in
-			let path = self.filePathWithIdentifier(download.identifier, type: .Video)
+			let path = self.filePathWithIdentifier(download.identifier, type: .Video, quality: download.quality)
 			self.deleteFileAtPathIfNecessary(path)
 			return path
 		}.progress { _, totalBytesRead, totalBytesExpectedToRead in
@@ -90,11 +90,11 @@ class DownloadManager {
 			}
 
 			do {
-				try self.filePathWithIdentifier(download.identifier, type: .Video).setResourceValue(true, forKey: NSURLIsExcludedFromBackupKey)
+				try self.filePathWithIdentifier(download.identifier, type: .Video, quality: download.quality).setResourceValue(true, forKey: NSURLIsExcludedFromBackupKey)
 			} catch {
 				print(error)
 			}
-			download.videoPath = self.fileNameWithIdentifier(download.identifier, type: .Video)
+			download.videoPath = self.fileNameWithIdentifier(download.identifier, type: .Video, quality: download.quality)
 
 			finished.video = true
 			if finishedBlock() {
@@ -107,7 +107,7 @@ class DownloadManager {
 
 		guard let audio = download.audioUrl else { return }
 		download.audioRequest = Alamofire.download(.GET, audio) { tempURL, response in
-			let path = self.filePathWithIdentifier(download.identifier, type: .Audio)
+			let path = self.filePathWithIdentifier(download.identifier, type: .Audio, quality: download.quality)
 			self.deleteFileAtPathIfNecessary(path)
 			return path
 			}.progress { _, totalBytesRead, totalBytesExpectedToRead in
@@ -123,11 +123,11 @@ class DownloadManager {
 				}
 
 				do {
-					try self.filePathWithIdentifier(download.identifier, type: .Audio).setResourceValue(true, forKey: NSURLIsExcludedFromBackupKey)
+					try self.filePathWithIdentifier(download.identifier, type: .Audio, quality: download.quality).setResourceValue(true, forKey: NSURLIsExcludedFromBackupKey)
 				} catch {
 					print(error)
 				}
-				download.audioPath = self.fileNameWithIdentifier(download.identifier, type: .Audio)
+				download.audioPath = self.fileNameWithIdentifier(download.identifier, type: .Audio, quality: download.quality)
 
 				finished.audio = true
 				if finishedBlock() {
@@ -145,12 +145,12 @@ class DownloadManager {
 	}
 
 
-	func fileNameWithIdentifier(identifier: String, type: FileType) -> String {
-		return identifier + type.rawValue
+	func fileNameWithIdentifier(identifier: String, type: FileType, quality: YouTubeVideoQuality) -> String {
+		return identifier + "-" + String(quality.rawValue) + type.rawValue
 	}
 
-	func filePathWithIdentifier(identifier: String, type: FileType) -> NSURL {
-		return NSURL(fileURLWithPath: documentsPath + "/" + fileNameWithIdentifier(identifier, type: type))
+	func filePathWithIdentifier(identifier: String, type: FileType, quality: YouTubeVideoQuality) -> NSURL {
+		return NSURL(fileURLWithPath: documentsPath + "/" + fileNameWithIdentifier(identifier, type: type, quality: quality))
 	}
 
 	func loadFromDefaults() {
