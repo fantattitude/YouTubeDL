@@ -1,0 +1,4 @@
+blades:
+  - source: icon.png 
+    mount: YouTube Downloader/Assets.xcassets/AppIcon.appiconset
+    contents: true

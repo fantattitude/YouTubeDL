@@ -50,5 +50,7 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<true/>
+	<key>CFBundleDisplayName</key>
+	<string>YouTube ⬇︎</string>
 </dict>
 </plist>

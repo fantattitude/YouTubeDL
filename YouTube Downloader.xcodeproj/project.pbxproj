@@ -26,6 +26,7 @@
 		8539E2C21C467CD70045CE7F /* VideoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8539E2C11C467CD70045CE7F /* VideoCell.swift */; };
 		858A7A351BFA91FC00989324 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8508184D1BF6B55D002A0731 /* AVFoundation.framework */; };
 		858A7A361BFA920100989324 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8508184B1BF6B49F002A0731 /* MediaPlayer.framework */; };
+		85AC25761C7C855000F1D472 /* Function+WeakRef.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85AC25751C7C855000F1D472 /* Function+WeakRef.swift */; };
 		85C9B3AC1C24D02F00C41946 /* Dispatch+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85C9B3AB1C24D02F00C41946 /* Dispatch+Utils.swift */; };
 		85EDEA7F1BFA9A960020554F /* XCDYoutubeKit+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85EDEA7E1BFA9A960020554F /* XCDYoutubeKit+Extension.swift */; };
 		85EDEA811BFAA6C70020554F /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 85EDEA801BFAA6C70020554F /* CoreMedia.framework */; };
@@ -58,7 +59,7 @@
 		850106DE1C071A56007FA519 /* DownloadManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownloadManager.swift; sourceTree = "<group>"; };
 		850106E01C072F04007FA519 /* Encodable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Encodable.swift; sourceTree = "<group>"; };
 		850106E21C072FF9007FA519 /* Download.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Download.swift; sourceTree = "<group>"; };
-		8508182E1BF68944002A0731 /* YouTube Downloader.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "YouTube Downloader.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		8508182E1BF68944002A0731 /* YouTube ⬇︎.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "YouTube ⬇︎.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		850818311BF68944002A0731 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		850818331BF68944002A0731 /* ListVideosVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListVideosVC.swift; sourceTree = "<group>"; };
 		850818351BF68944002A0731 /* DownloadVideoVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadVideoVC.swift; sourceTree = "<group>"; };
@@ -76,6 +77,7 @@
 		8522DBD31C058C9E002B98D1 /* Alamofire.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; name = Alamofire.framework.dSYM; path = Carthage/Build/iOS/Alamofire.framework.dSYM; sourceTree = "<group>"; };
 		8539E2BF1C4678EF0045CE7F /* NotificationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
 		8539E2C11C467CD70045CE7F /* VideoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoCell.swift; sourceTree = "<group>"; };
+		85AC25751C7C855000F1D472 /* Function+WeakRef.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Function+WeakRef.swift"; sourceTree = "<group>"; };
 		85C9B3AB1C24D02F00C41946 /* Dispatch+Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Dispatch+Utils.swift"; sourceTree = "<group>"; };
 		85EDEA7E1BFA9A960020554F /* XCDYoutubeKit+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "XCDYoutubeKit+Extension.swift"; sourceTree = "<group>"; };
 		85EDEA801BFAA6C70020554F /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
@@ -111,7 +113,7 @@
 		8508182F1BF68944002A0731 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				8508182E1BF68944002A0731 /* YouTube Downloader.app */,
+				8508182E1BF68944002A0731 /* YouTube ⬇︎.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -136,6 +138,7 @@
 		851C0A221C4FC0FD00D87F0F /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				85AC25751C7C855000F1D472 /* Function+WeakRef.swift */,
 				85C9B3AB1C24D02F00C41946 /* Dispatch+Utils.swift */,
 				8539E2BF1C4678EF0045CE7F /* NotificationManager.swift */,
 				85EDEA821BFAAB570020554F /* UIViewController+Utils.swift */,
@@ -189,9 +192,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		8508182D1BF68944002A0731 /* YouTube Downloader */ = {
+		8508182D1BF68944002A0731 /* YouTube ⬇︎ */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 850818421BF68944002A0731 /* Build configuration list for PBXNativeTarget "YouTube Downloader" */;
+			buildConfigurationList = 850818421BF68944002A0731 /* Build configuration list for PBXNativeTarget "YouTube ⬇︎" */;
 			buildPhases = (
 				8508182A1BF68944002A0731 /* Sources */,
 				8508182B1BF68944002A0731 /* Frameworks */,
@@ -204,9 +207,9 @@
 			);
 			dependencies = (
 			);
-			name = "YouTube Downloader";
+			name = "YouTube ⬇︎";
 			productName = "YouTube Downloader";
-			productReference = 8508182E1BF68944002A0731 /* YouTube Downloader.app */;
+			productReference = 8508182E1BF68944002A0731 /* YouTube ⬇︎.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -237,7 +240,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				8508182D1BF68944002A0731 /* YouTube Downloader */,
+				8508182D1BF68944002A0731 /* YouTube ⬇︎ */,
 			);
 		};
 /* End PBXProject section */
@@ -290,6 +293,7 @@
 				850106DF1C071A56007FA519 /* DownloadManager.swift in Sources */,
 				850818361BF68944002A0731 /* DownloadVideoVC.swift in Sources */,
 				8539E2C21C467CD70045CE7F /* VideoCell.swift in Sources */,
+				85AC25761C7C855000F1D472 /* Function+WeakRef.swift in Sources */,
 				850818321BF68944002A0731 /* AppDelegate.swift in Sources */,
 				850818341BF68944002A0731 /* ListVideosVC.swift in Sources */,
 				85EDEA831BFAAB570020554F /* UIViewController+Utils.swift in Sources */,
@@ -449,7 +453,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		850818421BF68944002A0731 /* Build configuration list for PBXNativeTarget "YouTube Downloader" */ = {
+		850818421BF68944002A0731 /* Build configuration list for PBXNativeTarget "YouTube ⬇︎" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				850818431BF68944002A0731 /* Debug */,

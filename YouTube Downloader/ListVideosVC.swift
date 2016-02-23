@@ -45,14 +45,16 @@ class ListVideosVC: UIViewController {
 		super.viewDidLoad()
 
 		refreshData()
-		notificationManager.registerObserver(AVPlayerItemDidPlayToEndTimeNotification, block: videoDidFinishPlaying)
-
-		DownloadManager.sharedManager.aVideoStarted {
-			self.tableView.reloadData()
+		notificationManager.registerObserver(AVPlayerItemDidPlayToEndTimeNotification) { [weak self] notification in
+			self?.videoDidFinishPlaying(notification)
 		}
 
-		DownloadManager.sharedManager.aVideoCompleted { _ in
-			self.tableView.reloadData()
+		DownloadManager.sharedManager.aVideoStarted { [weak self] in
+			self?.tableView.reloadData()
+		}
+
+		DownloadManager.sharedManager.aVideoCompleted { [weak self] _ in
+			self?.tableView.reloadData()
 		}
 	}
 }
