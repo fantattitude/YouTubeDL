@@ -59,7 +59,12 @@ final class Download {
 
 		guard videoDuration > 0 else { return nil }
 
-		return Download.dateComponentsFormatter.stringFromTimeInterval(Double(videoDuration))
+		guard let timeString = Download.dateComponentsFormatter.stringFromTimeInterval(Double(videoDuration)) else { return nil }
+		guard videoDuration >= 60 else {
+			return "00:" + timeString
+		}
+
+		return timeString
 	}
 
 	var player: AVPlayer? {
