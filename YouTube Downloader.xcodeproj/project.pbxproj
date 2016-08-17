@@ -32,6 +32,11 @@
 		85EDEA831BFAAB570020554F /* UIViewController+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85EDEA821BFAAB570020554F /* UIViewController+Utils.swift */; };
 		85F4D5DD1D6486CE0078E9FE /* RxCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 85F4D5DB1D6486CE0078E9FE /* RxCocoa.framework */; };
 		85F4D5DE1D6486CE0078E9FE /* RxSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 85F4D5DC1D6486CE0078E9FE /* RxSwift.framework */; };
+		85F4D5E41D6487B00078E9FE /* YouTubeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85F4D5E31D6487B00078E9FE /* YouTubeService.swift */; };
+		85F4D5EA1D648CAB0078E9FE /* Moya.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 85F4D5E61D648CAB0078E9FE /* Moya.framework */; };
+		85F4D5EC1D648CAB0078E9FE /* RxMoya.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 85F4D5E81D648CAB0078E9FE /* RxMoya.framework */; };
+		85F4D5F01D648D020078E9FE /* Result.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 85F4D5EE1D648D020078E9FE /* Result.framework */; };
+		85F4D5F11D648D020078E9FE /* Result.framework.dSYM in Resources */ = {isa = PBXBuildFile; fileRef = 85F4D5EF1D648D020078E9FE /* Result.framework.dSYM */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -87,6 +92,13 @@
 		85F4D5DC1D6486CE0078E9FE /* RxSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxSwift.framework; path = Carthage/Build/iOS/RxSwift.framework; sourceTree = "<group>"; };
 		85F4D5DF1D6486DB0078E9FE /* RxCocoa.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; name = RxCocoa.framework.dSYM; path = Carthage/Build/iOS/RxCocoa.framework.dSYM; sourceTree = "<group>"; };
 		85F4D5E01D6486DB0078E9FE /* RxSwift.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; name = RxSwift.framework.dSYM; path = Carthage/Build/iOS/RxSwift.framework.dSYM; sourceTree = "<group>"; };
+		85F4D5E31D6487B00078E9FE /* YouTubeService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YouTubeService.swift; sourceTree = "<group>"; };
+		85F4D5E61D648CAB0078E9FE /* Moya.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Moya.framework; path = Carthage/Build/iOS/Moya.framework; sourceTree = "<group>"; };
+		85F4D5E71D648CAB0078E9FE /* Moya.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; name = Moya.framework.dSYM; path = Carthage/Build/iOS/Moya.framework.dSYM; sourceTree = "<group>"; };
+		85F4D5E81D648CAB0078E9FE /* RxMoya.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxMoya.framework; path = Carthage/Build/iOS/RxMoya.framework; sourceTree = "<group>"; };
+		85F4D5E91D648CAB0078E9FE /* RxMoya.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; name = RxMoya.framework.dSYM; path = Carthage/Build/iOS/RxMoya.framework.dSYM; sourceTree = "<group>"; };
+		85F4D5EE1D648D020078E9FE /* Result.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Result.framework; path = Carthage/Build/iOS/Result.framework; sourceTree = "<group>"; };
+		85F4D5EF1D648D020078E9FE /* Result.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; name = Result.framework.dSYM; path = Carthage/Build/iOS/Result.framework.dSYM; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,6 +106,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				85F4D5EC1D648CAB0078E9FE /* RxMoya.framework in Frameworks */,
+				85F4D5F01D648D020078E9FE /* Result.framework in Frameworks */,
 				85EDEA811BFAA6C70020554F /* CoreMedia.framework in Frameworks */,
 				8522DBD71C05B535002B98D1 /* Alamofire.framework in Frameworks */,
 				85F4D5DD1D6486CE0078E9FE /* RxCocoa.framework in Frameworks */,
@@ -101,6 +115,7 @@
 				85F4D5DE1D6486CE0078E9FE /* RxSwift.framework in Frameworks */,
 				858A7A361BFA920100989324 /* MediaPlayer.framework in Frameworks */,
 				858A7A351BFA91FC00989324 /* AVFoundation.framework in Frameworks */,
+				85F4D5EA1D648CAB0078E9FE /* Moya.framework in Frameworks */,
 				850818501BF6B581002A0731 /* AVKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -138,6 +153,7 @@
 				8539E2C11C467CD70045CE7F /* VideoCell.swift */,
 				851C0A231C4FC12100D87F0F /* Resources */,
 				851C0A221C4FC0FD00D87F0F /* Utils */,
+				85F4D5E31D6487B00078E9FE /* YouTubeService.swift */,
 			);
 			path = "YouTube Downloader";
 			sourceTree = "<group>";
@@ -168,6 +184,7 @@
 		858A7A1A1BFA900200989324 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				85F4D5E51D648C940078E9FE /* Moya */,
 				8508184D1BF6B55D002A0731 /* AVFoundation.framework */,
 				8508184F1BF6B581002A0731 /* AVKit.framework */,
 				85EDEA801BFAA6C70020554F /* CoreMedia.framework */,
@@ -206,6 +223,19 @@
 				85F4D5E01D6486DB0078E9FE /* RxSwift.framework.dSYM */,
 			);
 			name = RxSwift;
+			sourceTree = "<group>";
+		};
+		85F4D5E51D648C940078E9FE /* Moya */ = {
+			isa = PBXGroup;
+			children = (
+				85F4D5EE1D648D020078E9FE /* Result.framework */,
+				85F4D5EF1D648D020078E9FE /* Result.framework.dSYM */,
+				85F4D5E61D648CAB0078E9FE /* Moya.framework */,
+				85F4D5E71D648CAB0078E9FE /* Moya.framework.dSYM */,
+				85F4D5E81D648CAB0078E9FE /* RxMoya.framework */,
+				85F4D5E91D648CAB0078E9FE /* RxMoya.framework.dSYM */,
+			);
+			name = Moya;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -270,6 +300,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8508183E1BF68944002A0731 /* LaunchScreen.storyboard in Resources */,
+				85F4D5F11D648D020078E9FE /* Result.framework.dSYM in Resources */,
 				8522DBD11C058C81002B98D1 /* XCDYouTubeKit.framework.dSYM in Resources */,
 				8508183B1BF68944002A0731 /* Assets.xcassets in Resources */,
 				850818391BF68944002A0731 /* Main.storyboard in Resources */,
@@ -289,6 +320,9 @@
 				"$(SRCROOT)/Carthage/Build/iOS/Alamofire.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/RxSwift.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/RxCocoa.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/Moya.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/RxMoya.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/Result.framework",
 			);
 			name = Carthage;
 			outputPaths = (
@@ -307,6 +341,7 @@
 				85EDEA7F1BFA9A960020554F /* XCDYoutubeKit+Extension.swift in Sources */,
 				85C9B3AC1C24D02F00C41946 /* Dispatch+Utils.swift in Sources */,
 				8539E2C01C4678EF0045CE7F /* NotificationManager.swift in Sources */,
+				85F4D5E41D6487B00078E9FE /* YouTubeService.swift in Sources */,
 				851C0A211C4FC06300D87F0F /* YouTube+Helper.swift in Sources */,
 				850106E31C072FF9007FA519 /* Download.swift in Sources */,
 				850106E11C072F04007FA519 /* Encodable.swift in Sources */,
