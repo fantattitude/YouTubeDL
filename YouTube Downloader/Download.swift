@@ -26,11 +26,11 @@ final class Download {
 		return NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0]
 	}()
 
-	func deleteFiles() {
+	func deleteFiles() throws {
 		guard let videoPath = videoPath else { return }
-		let _ = try? NSFileManager.defaultManager().removeItemAtPath(videoPath)
+		try NSFileManager.defaultManager().removeItemAtPath(documentsPath + "/" + videoPath)
 		guard let audioPath = audioPath else { return }
-		let _ = try? NSFileManager.defaultManager().removeItemAtPath(audioPath)
+		try NSFileManager.defaultManager().removeItemAtPath(documentsPath + "/" + audioPath)
 	}
 
 	init(name: String, identifier: String, quality: YouTubeVideoQuality!, videoUrl: String, videoPath: String? = nil, audioUrl: String? = nil, audioPath: String? = nil, status: Status = .Downloading) {

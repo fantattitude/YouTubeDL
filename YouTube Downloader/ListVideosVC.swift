@@ -8,7 +8,7 @@ class ListVideosVC: UIViewController {
 	@IBOutlet private weak var tableView: UITableView! {
 		didSet {
 			refreshControl = UIRefreshControl()
-			refreshControl.addTarget(self, action: "refreshData", forControlEvents: .ValueChanged)
+			refreshControl.addTarget(self, action: #selector(ListVideosVC.refreshData), forControlEvents: .ValueChanged)
 			tableView.insertSubview(refreshControl, atIndex: 0)
 		}
 	}
@@ -79,7 +79,11 @@ extension ListVideosVC: UITableViewDataSource {
 	func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
 		guard editingStyle == .Delete else { return }
 
-		downloads[indexPath.section][indexPath.row].deleteFiles()
+		do {
+			try downloads[indexPath.section][indexPath.row].deleteFiles()
+		} catch {
+			print(error)
+		}
 		DownloadManager.sharedManager.downloads.removeAtIndex(indexPath.row)
 		DownloadManager.sharedManager.saveToDefaults()
 		tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
