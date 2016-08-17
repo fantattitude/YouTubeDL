@@ -1,2 +1,4 @@
 github "0xced/XCDYouTubeKit"
 github "Alamofire/Alamofire"
+github "ReactiveX/RxSwift" ~> 2.0
+

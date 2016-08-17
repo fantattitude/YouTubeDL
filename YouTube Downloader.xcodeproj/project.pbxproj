@@ -19,7 +19,6 @@
 		850818501BF6B581002A0731 /* AVKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8508184F1BF6B581002A0731 /* AVKit.framework */; };
 		851C0A211C4FC06300D87F0F /* YouTube+Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 851C0A201C4FC06300D87F0F /* YouTube+Helper.swift */; };
 		8522DBD11C058C81002B98D1 /* XCDYouTubeKit.framework.dSYM in Resources */ = {isa = PBXBuildFile; fileRef = 8522DBCF1C058C81002B98D1 /* XCDYouTubeKit.framework.dSYM */; };
-		8522DBD51C058C9E002B98D1 /* Alamofire.framework.dSYM in Resources */ = {isa = PBXBuildFile; fileRef = 8522DBD31C058C9E002B98D1 /* Alamofire.framework.dSYM */; };
 		8522DBD61C05B533002B98D1 /* XCDYouTubeKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8522DBCE1C058C81002B98D1 /* XCDYouTubeKit.framework */; };
 		8522DBD71C05B535002B98D1 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8522DBD21C058C9E002B98D1 /* Alamofire.framework */; };
 		8539E2C01C4678EF0045CE7F /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8539E2BF1C4678EF0045CE7F /* NotificationManager.swift */; };
@@ -31,6 +30,8 @@
 		85EDEA7F1BFA9A960020554F /* XCDYoutubeKit+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85EDEA7E1BFA9A960020554F /* XCDYoutubeKit+Extension.swift */; };
 		85EDEA811BFAA6C70020554F /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 85EDEA801BFAA6C70020554F /* CoreMedia.framework */; };
 		85EDEA831BFAAB570020554F /* UIViewController+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85EDEA821BFAAB570020554F /* UIViewController+Utils.swift */; };
+		85F4D5DD1D6486CE0078E9FE /* RxCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 85F4D5DB1D6486CE0078E9FE /* RxCocoa.framework */; };
+		85F4D5DE1D6486CE0078E9FE /* RxSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 85F4D5DC1D6486CE0078E9FE /* RxSwift.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -82,6 +83,10 @@
 		85EDEA7E1BFA9A960020554F /* XCDYoutubeKit+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "XCDYoutubeKit+Extension.swift"; sourceTree = "<group>"; };
 		85EDEA801BFAA6C70020554F /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
 		85EDEA821BFAAB570020554F /* UIViewController+Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Utils.swift"; sourceTree = "<group>"; };
+		85F4D5DB1D6486CE0078E9FE /* RxCocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxCocoa.framework; path = Carthage/Build/iOS/RxCocoa.framework; sourceTree = "<group>"; };
+		85F4D5DC1D6486CE0078E9FE /* RxSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxSwift.framework; path = Carthage/Build/iOS/RxSwift.framework; sourceTree = "<group>"; };
+		85F4D5DF1D6486DB0078E9FE /* RxCocoa.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; name = RxCocoa.framework.dSYM; path = Carthage/Build/iOS/RxCocoa.framework.dSYM; sourceTree = "<group>"; };
+		85F4D5E01D6486DB0078E9FE /* RxSwift.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; name = RxSwift.framework.dSYM; path = Carthage/Build/iOS/RxSwift.framework.dSYM; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,7 +96,9 @@
 			files = (
 				85EDEA811BFAA6C70020554F /* CoreMedia.framework in Frameworks */,
 				8522DBD71C05B535002B98D1 /* Alamofire.framework in Frameworks */,
+				85F4D5DD1D6486CE0078E9FE /* RxCocoa.framework in Frameworks */,
 				8522DBD61C05B533002B98D1 /* XCDYouTubeKit.framework in Frameworks */,
+				85F4D5DE1D6486CE0078E9FE /* RxSwift.framework in Frameworks */,
 				858A7A361BFA920100989324 /* MediaPlayer.framework in Frameworks */,
 				858A7A351BFA91FC00989324 /* AVFoundation.framework in Frameworks */,
 				850818501BF6B581002A0731 /* AVKit.framework in Frameworks */,
@@ -166,6 +173,7 @@
 				85EDEA801BFAA6C70020554F /* CoreMedia.framework */,
 				8508184B1BF6B49F002A0731 /* MediaPlayer.framework */,
 				85EDEA841BFAAFD00020554F /* Alamofire */,
+				85F4D5DA1D6485940078E9FE /* RxSwift */,
 				85EDEA751BFA98300020554F /* XCDYouTubeKit */,
 			);
 			name = Frameworks;
@@ -187,6 +195,17 @@
 				8522DBD31C058C9E002B98D1 /* Alamofire.framework.dSYM */,
 			);
 			name = Alamofire;
+			sourceTree = "<group>";
+		};
+		85F4D5DA1D6485940078E9FE /* RxSwift */ = {
+			isa = PBXGroup;
+			children = (
+				85F4D5DB1D6486CE0078E9FE /* RxCocoa.framework */,
+				85F4D5DF1D6486DB0078E9FE /* RxCocoa.framework.dSYM */,
+				85F4D5DC1D6486CE0078E9FE /* RxSwift.framework */,
+				85F4D5E01D6486DB0078E9FE /* RxSwift.framework.dSYM */,
+			);
+			name = RxSwift;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -252,7 +271,6 @@
 			files = (
 				8508183E1BF68944002A0731 /* LaunchScreen.storyboard in Resources */,
 				8522DBD11C058C81002B98D1 /* XCDYouTubeKit.framework.dSYM in Resources */,
-				8522DBD51C058C9E002B98D1 /* Alamofire.framework.dSYM in Resources */,
 				8508183B1BF68944002A0731 /* Assets.xcassets in Resources */,
 				850818391BF68944002A0731 /* Main.storyboard in Resources */,
 			);
@@ -269,6 +287,8 @@
 			inputPaths = (
 				"$(SRCROOT)/Carthage/Build/iOS/XCDYouTubeKit.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/Alamofire.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/RxSwift.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/RxCocoa.framework",
 			);
 			name = Carthage;
 			outputPaths = (
